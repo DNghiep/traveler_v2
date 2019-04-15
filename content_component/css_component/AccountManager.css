@@ -1,0 +1,161 @@
+.app {
+  height: 100vh;
+  display: grid;
+  color: #DEB887;
+  background-color: #DEB887;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.manager-body {
+  margin: auto;
+  display: gird;
+  align-items: center;
+  width: 80%;
+}
+
+.app-aside {
+  height: 100%;
+  align-items: center;
+  width: 50%;
+  background-color: white;
+}
+
+.app-form {
+  height: 100%;
+  align-items: center;
+  width: 50%;
+  background-color: white;
+}
+
+.pageswitcher {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+}
+
+.pageswitcher-item {
+  background-color: #4C5D72;
+  color: #9DA6B1;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 1.2em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.pageswitcher-item--active {
+  background-color: #5ED0C0;
+  color: white;
+}
+
+.pageswitcher-item:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.pageswitcher-item:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.formcenter {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.formtitle {
+  color: #707C8B;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+.formtitle-link {
+  color: #707C8B;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.7em;
+  margin: 0 10px;
+  padding-bottom: 5px;
+}
+
+.formtitle-link:first-child {
+  margin-left: 0;
+}
+
+.formtitle-link--active {
+  color: white;
+  border-bottom: 1px solid #199087;
+}
+
+.formfield {
+  margin-bottom: 40px;
+}
+
+.formfield-label {
+  display: block;
+  text-transform: uppercase;
+  font-size: .9em;
+  color: black;
+}
+.formfield-input {
+  width: 85%;
+  background-color: transparent;
+  border: none;
+  color: black;
+  outline: none;
+  border-bottom: 1px solid #445366;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.formfield-input::placeholder {
+  color: #616E7F;
+}
+
+.formfield-button {
+  background-color: #D2691E;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  padding: 15px 70px;
+  font-size: .8em;
+  font-weight: 500;
+}
+
+.formfield-link {
+  color: #66707D;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1.5px solid #225E62;
+  padding-bottom: 5px;
+}
+
+.formfield-checkboxlabel {
+  color: #646F7D;
+  font-size: .9em;
+}
+
+.formfield-checkbox {
+  position: relative;
+  top: 1.5px;
+}
+
+.formfield-termslink {
+  color:blue;
+  border-bottom: 1px solid #199087;
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  margin-left: 5px;
+}
+.title {
+  color: black ;
+  margin-left: 30px ;
+  text-transform: capitalize;
+  font-size: 40px;
+  font-family: "Times New Roman", Times, serif;
+}
