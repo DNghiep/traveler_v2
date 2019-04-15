@@ -1,0 +1,36 @@
+
+.component-appear{
+    opacity: 0;
+    z-index: 1;
+    transform: translateY(-100%);
+}
+
+.component-appear-active{
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 600ms linear;
+}
+
+.component-enter{
+    opacity: 0;
+    z-index: 1;
+    transform: translateY(100%);
+}
+.component-enter-active{
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 600ms linear;
+}
+
+.component-exit{
+    transform: translateY(0);
+}
+
+.component-exit-active{
+    transform: translateY(100%);
+    transition: transform 600ms;
+}
+
+.component-exit-done{
+    transform: translateY(100%)
+}

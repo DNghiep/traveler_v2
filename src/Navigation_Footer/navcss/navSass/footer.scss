@@ -1,0 +1,98 @@
+@import './library';
+
+.footer-cover{
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: $backgroundPage;
+    .footer-contact-box{
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        color: $textColor1;
+        h5{
+            font-size: 35px;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .contact-block{
+            box-sizing: border-box;
+            @include displayFlex(row, none);
+            width: 100%;
+            height: 30px;
+            padding: auto;
+            .contact-cover{
+                box-sizing: border-box;
+                @include displayFlex(row, none);
+                width: 200px;
+                margin: auto;
+                .contact-button-cover{
+                    background-color: $siteNameColor;
+                    color: $backgroundNav;
+                    width: 30px;
+                    height: 30px;
+                    font-size: 20px;
+                    text-align: center;
+                    margin: 0 10px;
+                    border-radius: 4px;
+                    transition: all 0.5s;
+                    i{
+                        margin: 5px;
+                    }
+                    &:hover{
+                        transform: rotate(180deg);
+                        background-color: $backgroundNav;
+                        color: $siteNameColor;
+                        @include border($siteNameColor);
+                        i{
+                            transform: rotate(-180deg);
+                            animation: iRotate 0.5s 1;
+                        }
+                        @keyframes iRotate {
+                            50%{
+                                transform: rotate(180deg);
+                            }
+                            100%{
+                                transform: rotate(-180deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .nav-footer{
+        @include displayFlex(row, none);
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        height: 40px;
+        .footer-nav{
+            color: $textColor1;
+            text-decoration: none;
+            width: 25%;
+            text-align: center;
+            margin: auto;
+            font-weight: bold;
+            transition: all 0.3s;
+            &:hover{
+                color: $siteNameColor;
+                transform: scaleY(1.2);
+            }
+        }
+    }
+    .under-footer{
+        background-color: $siteNameColor;
+        color: $textColor3;
+        padding: auto;
+        text-align: center;
+        h5{
+            font-size: 30px;
+            margin: auto;
+        }
+    }
+}

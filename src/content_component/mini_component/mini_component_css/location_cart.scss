@@ -1,0 +1,98 @@
+@import './library';
+
+
+.contain_box{
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+    @include border(black);
+    @include displayFlex(row, none);
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
+    height: 100px;
+    margin: 10px;
+    background-color: $backgroundNav;
+    //border-radius: 15px;
+    .image_box{
+        @include displayFlex(column, none);
+        width: 200px;
+        max-width: 200px;
+        .special_box{
+            font-size: 20px;
+            text-align: center;
+            height: 20px;
+            padding: 0;
+            margin: 0;
+            width: 100px;
+            min-width: 100px;
+            transform: rotate(-45deg) translateX(-25px) translateY(-20px);
+            color: $textColor3;
+            background-color: $textColor1;
+            font-weight: bold;
+            opacity: 0.8;
+            z-index: 1;
+            small{
+                margin: auto;
+                padding: auto;
+            }
+        }
+        .nohot{
+            height: 20px;
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            min-width: 100px;
+        }
+        @include displayFlex(row, none);
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+        margin: 0;
+        img{
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            min-width: 200px;
+            transform: translateX(-100px)
+        }
+    }
+    .name_box{
+        @include displayFlex(column, none);
+        width: 200px;
+        margin: 0;
+        text-align: center;
+        p{
+            font-size: 20px;
+            color: $siteNameColor;
+            font-weight: bolder;
+            height: 70%;
+            min-height: 70%;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s;
+        }
+        #view{
+            display: none;
+            color: $siteNameColor;
+            font-size: 20px;
+            height: 30%;
+            min-height: 30%;
+            margin: auto;
+            margin-top: 0 !important;
+            font-style: italic;
+        }
+    }
+    &:hover #view{
+        display: inline;
+        animation: view 0.3s 1;
+    }
+    @keyframes view {
+        0%{
+            transform: translateY(30px);
+        }
+        100%{
+            transform: translateY(0);
+        }
+    }
+}
