@@ -1,0 +1,124 @@
+@import  './library';
+
+
+
+*{
+    box-sizing: inherit;
+}
+
+.home-cover{
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 10px 0;
+    background-color: $backgroundPage;
+    .wallpaper-content{
+        overflow: hidden;
+        //border-bottom-left-radius: 30px;
+        //border-bottom-right-radius: 30px;
+        width: 100%;
+        padding: 0;
+        .wallpaper{
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+        }
+    }
+    .slider-box{
+        @include displayFlex(row, none);
+        width: 100%;
+        padding: 0;
+        margin: 10px 0 0 0;
+        .slider-cover{
+            @include displayFlex(row, none);
+            width: 1260px;
+            margin: auto;
+            overflow: hidden;
+            border: 1px $siteNameColor solid;
+            //border-radius: 15px;
+            background-color: $siteNameColor;
+            .slider-wrapper{
+                @include displayFlex(row, none);
+                transition: transform 0.5s;
+            }
+        }
+        .pre-btn{
+            width: 40px;
+            min-width: 40px;
+            margin: 0 10px;
+            right: 0;
+            cursor: pointer;
+            i{
+                font-size: 40px;
+                margin: 40px 0 20px 0;
+                color: $siteNameColor;
+                &:hover{
+                    animation: spin 0.3s;
+                }
+            }
+        }
+        .nex-btn{
+            width: 40px;
+            min-width: 40px;
+            margin: 0 10px;
+            cursor: pointer;
+
+            i{
+                font-size: 40px;
+                margin: 40px 0 20px 0;
+                color: $siteNameColor;
+                &:hover{
+                    animation: spin 0.3s;
+                }
+            }
+            @keyframes spin {
+                50%{
+                    transform: rotate(180deg);
+                }
+                100%{
+                    transform: rotate(360deg);
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1360px){
+    .slider-cover{
+        width: 840px;
+        max-width: 840px;
+    }
+}
+
+
+
+@media screen and (max-width: 940px){
+    .slider-cover{
+        width: 420px;
+        max-width: 420px;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .slider-box{
+        display: none !important;
+    }
+}
+
+.component-appear{
+    opacity: 0;
+}
+.component-appear-active{
+    opacity: 1;
+    transition: opacity 600ms linear;
+}
+
+.component-enter{
+    opacity: 0;
+}
+
+.component-enter-active{
+    opacity: 1;
+    transition: opacity 600ms linear;
+}
