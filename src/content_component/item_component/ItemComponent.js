@@ -7,8 +7,26 @@ class ItemComponent extends Component {
   }
   render() {
     return (
-      <div className="">
-        <h1>Item</h1>
+      <div className="item-container">
+        <div className="from-container">
+          <h2>From</h2>
+        </div>
+
+        <div className="vehicle-container">
+          <h2>Vehicle</h2>
+        </div>
+
+        <div className="to-container">
+          <h2>To</h2>
+        </div>
+
+        <div className="price-container">
+          <h2>1,800,000vnd</h2>
+        </div>
+
+        <div class="btn-item" >
+          <h4>Select</h4>
+        </div>
       </div>
     );
   }
