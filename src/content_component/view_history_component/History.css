@@ -1,0 +1,13 @@
+.tab-container {
+  padding: 25px 0;
+  padding-top: 25px;
+  padding-right: 0px;
+  padding-bottom: 25px;
+  padding-left: 0px;
+  text-align: center;
+}
+.booking-result-tabs-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
