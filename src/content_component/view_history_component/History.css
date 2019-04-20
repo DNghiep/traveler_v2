@@ -1,3 +1,10 @@
+.booking-result-view {
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px
+}
 .tab-container {
   padding: 25px 0;
   padding-top: 25px;

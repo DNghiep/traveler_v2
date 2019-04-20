@@ -9,7 +9,8 @@ class ItemComponent extends Component {
     return (
       <div className="item-container">
         <div className="from-container">
-          <h2>From</h2>
+          <h2>9:35</h2>
+          <h5>Ha Noi</h5>
         </div>
 
         <div className="vehicle-container">
@@ -17,15 +18,16 @@ class ItemComponent extends Component {
         </div>
 
         <div className="to-container">
-          <h2>To</h2>
+          <h2>10:35</h2>
+          <h5>Ho Chi Minh</h5>
         </div>
 
         <div className="price-container">
-          <h2>1,800,000vnd</h2>
+          <h2>1,800,000 VND</h2>
         </div>
 
-        <div class="btn-item" >
-          <h4>Select</h4>
+        <div class="btn-item">
+          <h4>Book</h4>
         </div>
       </div>
     );
