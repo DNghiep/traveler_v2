@@ -170,4 +170,11 @@
   -webkit-transition: opacity 600ms linear;
   transition: opacity 600ms linear;
 }
+
+.center-box {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /*# sourceMappingURL=home.css.map */
