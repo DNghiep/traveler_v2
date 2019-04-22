@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 //import data for cart slide bar
 import Data from './mini_component/component_data/cartdata';
 import LocationCard from './mini_component/location-card';
+import Calendar from './calendar';
 
 
 class Home extends Component {
@@ -38,7 +39,7 @@ class Home extends Component {
             }
         )
         this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions); 
+        window.addEventListener('resize', this.updateWindowDimensions);
     }
 
     componentWillUnmount() {
@@ -66,7 +67,7 @@ class Home extends Component {
             cartData: oldstate.cartData,
             imageUrl: oldstate.imageUrl,
             isIn: oldstate.isIn
-        }) 
+        })
     }
 
     nextHandler(){
@@ -107,7 +108,7 @@ class Home extends Component {
         console.log(`change to image ${url}`)
     }
 
-    render() { 
+    render() {
         return (
             <CSSTransition
             in={true}
@@ -119,13 +120,16 @@ class Home extends Component {
                     <div className="wallpaper-content">
                         <img src={require(`${this.state.imageUrl}`)} alt="wallpaper" className="wallpaper" />
                     </div>
+                    <div className="center-box">
+                        <Calendar/>
+                    </div>
                     <div className="slider-box">
                         <div className="pre-btn" onClick={this.prevHandler}><i className="fas fa-arrow-circle-left"></i></div>
                         <div className="slider-cover">
-                            <div className="slider-wrapper" 
+                            <div className="slider-wrapper"
                             style={{'transform': `translateX(-${420*this.state.sliderBarIndex}px)`}}>
                                 {this.state.cartData.map(item=>{
-                                    return <LocationCard name={item.name}                                        
+                                    return <LocationCard name={item.name}
                                         isHot={item.isHot}
                                         image_url={item.image_url}
                                         image_decs={item.image_decs}
@@ -143,5 +147,5 @@ class Home extends Component {
         );
     }
 }
- 
+
 export default Home;
