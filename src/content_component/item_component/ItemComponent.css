@@ -10,6 +10,7 @@
   box-shadow: 0.5px 1.5px #444;
   font-style: normal;
   font-weight: 400;
+  margin: 10px
 }
 .from-container {
   display: flex;

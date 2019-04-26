@@ -26,9 +26,9 @@ class ItemComponent extends Component {
           <h2>1,800,000 VND</h2>
         </div>
 
-        <div class="btn-item">
+        <button className="btn-item">
           <h4>Book</h4>
-        </div>
+        </button>
       </div>
     );
   }
