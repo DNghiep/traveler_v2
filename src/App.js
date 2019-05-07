@@ -1,37 +1,62 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-
-//Import component for navigation and footer
-import Nav from './Navigation_Footer/navigation';
-import Footer from './Navigation_Footer/footer';
+import { BrowserRouter } from 'react-router-dom';
 
 //Import component for content page
-import Home from './content_component/home';
-import Calendar from './content_component/calendar';
-import Account from './content_component/account';
-import Cart from './content_component/cart';
+import NavBar from './Component/NavBar/NavBar';
+import Header from './Component/Header/Header';
+import Promotion from './Component/Promotion/Promotion';
+import Search from './Component/Search/Search';
+import Calendar from './Component/Calendar/Calendar';
+import Footer from './Component/Footer/Footer';
+
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      user: undefined
+      searchInput: {
+        from: undefined,
+        to: undefined,
+        startDay: new Date(),
+        backDay: undefined
+      }
     }
+    this.getSearchInput = this.getSearchInput.bind(this);
+    this.setSearchInput = this.setSearchInput.bind(this);
+    this.search = this.search.bind(this);
+  }
+
+  getSearchInput() {
+    return this.state.searchInput;
+  }
+
+  setSearchInput(searchInput) {
+    this.setState({
+      searchInput: searchInput
+    })
+  }
+
+  search() {
+    console.log(`Search For: ${this.state.searchInput.from}`);
+    console.log(this.state.searchInput.to);
+    console.log(this.state.searchInput.startDay);
+    console.log(this.state.searchInput.backDay);
   }
   render() {
     return (
-        <BrowserRouter>
-          <div>
-            <Nav />
-            <Switch>
-              <Route exact path="/" component={Home} /> 
-              <Route exact path="/calendar" component={Calendar} /> 
-              <Route exact path="/cart" component={Cart} /> 
-              <Route exact path="/account" component={Account} /> 
-            </Switch>
-            <Footer />
-          </div>
-        </BrowserRouter>
+      <BrowserRouter>
+        <div className="container-fluid px-0">
+          <NavBar />
+          <Header id="Header"
+            getSearchInput={this.getSearchInput}
+            setSearchInput={this.setSearchInput}
+            search={this.search} />
+          <Promotion id="Promotion" />
+          <Search id="Search" />
+          <Calendar id="Calendar" />
+          <Footer />
+        </div>
+      </BrowserRouter>
     )
   }
 }
