@@ -9,6 +9,8 @@ import Search from './Component/Search/Search';
 import Calendar from './Component/Calendar/Calendar';
 import Footer from './Component/Footer/Footer';
 
+//Import promotData
+import Data from './DataFiles/PromotionJson/PromotData';
 
 class App extends Component {
   constructor(props) {
@@ -31,9 +33,9 @@ class App extends Component {
   }
 
   setSearchInput(searchInput) {
-    this.setState({
-      searchInput: searchInput
-    })
+    this.setState((state)=>({
+      searchInput: searchInput  
+    }))
   }
 
   search() {
@@ -51,7 +53,11 @@ class App extends Component {
             getSearchInput={this.getSearchInput}
             setSearchInput={this.setSearchInput}
             search={this.search} />
-          <Promotion id="Promotion" />
+          <Promotion id="Promotion" 
+            promotData={Data.promotData} 
+            setSearchInput={this.setSearchInput}
+            getSearchInput={this.getSearchInput} 
+            search={this.search}/>
           <Search id="Search" />
           <Calendar id="Calendar" />
           <Footer />

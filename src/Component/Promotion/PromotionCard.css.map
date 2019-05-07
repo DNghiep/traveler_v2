@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,AAAA,WAAW,CAAA;EACP,MAAM,EAAE,OAAO;CAClB",
     "sources": [
         "PromotionCard.scss"
     ],
