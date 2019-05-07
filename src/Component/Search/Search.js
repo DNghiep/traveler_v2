@@ -12,10 +12,42 @@ export default class Search extends Component{
         super(props);
         this.handleStartDayChange = this.handleStartDayChange.bind(this);
         this.handleBackDayChange = this.handleBackDayChange.bind(this);
+        this.handleChangeTo = this.handleChangeTo.bind(this);
+        this.handleChangeFrom = this.handleChangeFrom.bind(this);
         this.state = {
+            from: this.props.getSearchInput().from,
+            to: this.props.getSearchInput().to,
             selectedStartDay: this.props.getSearchInput().startDay,
             selectedBackDay: this.props.getSearchInput().backDay,            
         };
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if(this.props !== prevProps)
+        this.setState({
+            from: this.props.getSearchInput().from,
+            to: this.props.getSearchInput().to,
+            selectedStartDay: this.props.getSearchInput().startDay,
+            selectedBackDay: this.props.getSearchInput().backDay,            
+        });
+    }
+
+    handleChangeFrom(e){
+        this.props.setSearchInput({
+            from: e.target.value,
+            to: this.props.getSearchInput().to,
+            startDay: this.props.getSearchInput().startDay,
+            backDay: this.props.getSearchInput().backDay
+        })
+    }
+
+    handleChangeTo(e){
+        this.props.setSearchInput({
+            from: this.props.getSearchInput().from,
+            to: e.target.value,
+            startDay: this.props.getSearchInput().startDay,
+            backDay: this.props.getSearchInput().backDay
+        })
     }
 
     handleStartDayChange(day) {
@@ -38,18 +70,20 @@ export default class Search extends Component{
     }
 
     render(){
+        const from = this.state.from;
+        const to = this.state.to;
         return(
-            <div>
+            <div id="Search">
                 <br />
                 <div className="container py-2 text-light">
                     <div className="form-row">
                         <div className="form-group col-md-6">
                         <label htmlFor="inputFrom">From</label>
-                        <input type="text" className="form-control" id="From" placeholder="Ho Chi Minh" />
+                        <input type="text" className="form-control" id="From" placeholder="Ho Chi Minh" onChange={this.handleChangeFrom} value={from}/>
                         </div>
                         <div className="form-group col-md-6">
                         <label htmlFor="inputTo">To</label>
-                        <input type="text" className="form-control" id="inputTo" placeholder="Da Lat" />
+                        <input type="text" className="form-control" id="inputTo" placeholder="Da Lat" onChange={this.handleChangeTo} value={to}/>
                         </div>
                     </div>
                     <div className="form-row">

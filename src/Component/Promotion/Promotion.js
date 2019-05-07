@@ -20,7 +20,7 @@ export default class Promotion extends Component{
     }
     render(){
         return(
-            <div className="container-fluid">
+            <div className="container-fluid" id="Promotion">
                 <div className="row justify-content-center text-md-left text-sm-center">
                     
                     <div className="row col-lg-4 col-md-8 col-sm-12 px-0 no-gutters">

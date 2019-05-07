@@ -41,16 +41,24 @@ export default class Header extends Component {
         this.props.setSearchInput({
             from: this.props.getSearchInput().from,
             to: this.props.getSearchInput().to,
-            startDay: undefined,
+            startDay: new Date(),
             backDay: undefined
         })
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if(this.props !== prevProps)
+            this.setState({
+                from: this.props.getSearchInput().startDay,
+                to: this.props.getSearchInput().backDay
+            })
     }
 
     render() {
         const { from, to } = this.state;
         const modifiers = { start: from, end: to };
         return (
-            <div className="jumbotron mb-0 text-light py-5">
+            <div className="jumbotron mb-0 text-light py-5" id="Header">
                 <h1 className="display-3 text-center mt-0">Welcome</h1>
                 <p className="lead text-center">Go anywhere with Traveller</p>
                 <div className="RangeExample">

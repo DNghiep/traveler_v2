@@ -43,26 +43,30 @@ class App extends Component {
     console.log(this.state.searchInput.to);
     console.log(this.state.searchInput.startDay);
     console.log(this.state.searchInput.backDay);
+    window.location.href="#Calendar";
   }
   render() {
     return (
       <BrowserRouter>
         <div className="container-fluid px-0">
           <NavBar />
-          <Header id="Header"
+          <Header
             getSearchInput={this.getSearchInput}
             setSearchInput={this.setSearchInput}
             search={this.search} />
-          <Promotion id="Promotion" 
+          <Promotion 
             promotData={Data.promotData} 
             setSearchInput={this.setSearchInput}
             getSearchInput={this.getSearchInput} 
             search={this.search}/>
-          <Search id="Search" 
+          <Search 
             setSearchInput={this.setSearchInput}
             getSearchInput={this.getSearchInput}
             search={this.search}/>
-          <Calendar id="Calendar" />
+          <Calendar 
+            setSearchInput={this.setSearchInput}
+            getSearchInput={this.getSearchInput}
+            search={this.search}/>
           <Footer />
         </div>
       </BrowserRouter>

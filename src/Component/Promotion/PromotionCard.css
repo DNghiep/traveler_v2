@@ -1,4 +1,38 @@
 .card-title {
+  display: none;
   cursor: pointer;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  font-weight: bold;
+}
+
+.card:hover .card-title {
+  display: block;
+  -webkit-animation: showup 0.5s 1;
+          animation: showup 0.5s 1;
+}
+
+@-webkit-keyframes showup {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+    font-weight: bold;
+  }
+}
+
+@keyframes showup {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+    font-weight: bold;
+  }
 }
 /*# sourceMappingURL=PromotionCard.css.map */
