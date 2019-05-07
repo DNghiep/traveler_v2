@@ -50,8 +50,8 @@ export default class Header extends Component {
         const { from, to } = this.state;
         const modifiers = { start: from, end: to };
         return (
-            <div className="jumbotron mb-0 text-light">
-                <h1 className="display-3 text-center">Welcome</h1>
+            <div className="jumbotron mb-0 text-light py-5">
+                <h1 className="display-3 text-center mt-0">Welcome</h1>
                 <p className="lead text-center">Go anywhere with Traveller</p>
                 <div className="RangeExample">
                     <p>

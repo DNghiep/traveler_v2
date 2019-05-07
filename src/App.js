@@ -58,7 +58,10 @@ class App extends Component {
             setSearchInput={this.setSearchInput}
             getSearchInput={this.getSearchInput} 
             search={this.search}/>
-          <Search id="Search" />
+          <Search id="Search" 
+            setSearchInput={this.setSearchInput}
+            getSearchInput={this.getSearchInput}
+            search={this.search}/>
           <Calendar id="Calendar" />
           <Footer />
         </div>
