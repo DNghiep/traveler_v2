@@ -1,0 +1,15 @@
+#BookingInfo .hide {
+  display: none;
+}
+
+#BookingInfo .show {
+  display: block;
+}
+
+#BookingInfo .container {
+  position: fixed;
+  top: auto;
+  left: auto;
+  z-index: 2;
+}
+/*# sourceMappingURL=BookingInfo.css.map */

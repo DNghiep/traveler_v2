@@ -6,7 +6,7 @@
   font-weight: bold;
 }
 
-.promotioncard .card:hover .card-title {
+.promotioncard:hover .card-title {
   display: block;
   -webkit-animation: showup 0.5s 1;
           animation: showup 0.5s 1;

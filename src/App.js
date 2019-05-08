@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import './App.css';
 
 //Import component for content page
 import NavBar from './Component/NavBar/NavBar';
@@ -22,8 +23,7 @@ class App extends Component {
         to: undefined,
         startDay: new Date(),
         backDay: undefined
-      },
-      openCard: undefined
+      }
     }
     this.getSearchInput = this.getSearchInput.bind(this);
     this.setSearchInput = this.setSearchInput.bind(this);
@@ -33,11 +33,7 @@ class App extends Component {
 
 
   book(data, e) {
-    let prevState = this.state;
-    this.setState({
-      searchInput: prevState.searchInput,
-      openCard: data
-    });
+    alert('booked!');
   }
 
   getSearchInput() {

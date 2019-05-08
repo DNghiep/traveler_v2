@@ -1,0 +1,15 @@
+#BookingInfo{
+    .hide{
+        display: none;
+    }
+    .show{
+        display: block;
+    }
+    
+    .container{
+        position: fixed;
+        top: auto;
+        left: auto;
+        z-index: 2;
+    }
+}

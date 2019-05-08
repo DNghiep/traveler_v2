@@ -34,3 +34,7 @@
 .component-exit-done{
     transform: translateY(100%)
 }
+
+* {
+    scroll-behavior: smooth;
+}
