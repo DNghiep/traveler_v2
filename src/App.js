@@ -12,6 +12,7 @@ import Footer from './Component/Footer/Footer';
 //Import promotData
 import Data from './DataFiles/PromotionJson/PromotData';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,11 +22,22 @@ class App extends Component {
         to: undefined,
         startDay: new Date(),
         backDay: undefined
-      }
+      },
+      openCard: undefined
     }
     this.getSearchInput = this.getSearchInput.bind(this);
     this.setSearchInput = this.setSearchInput.bind(this);
     this.search = this.search.bind(this);
+    this.book = this.book.bind(this);
+  }
+
+
+  book(data, e) {
+    let prevState = this.state;
+    this.setState({
+      searchInput: prevState.searchInput,
+      openCard: data
+    });
   }
 
   getSearchInput() {
@@ -33,8 +45,8 @@ class App extends Component {
   }
 
   setSearchInput(searchInput) {
-    this.setState((state)=>({
-      searchInput: searchInput  
+    this.setState((state) => ({
+      searchInput: searchInput
     }))
   }
 
@@ -43,7 +55,7 @@ class App extends Component {
     console.log(this.state.searchInput.to);
     console.log(this.state.searchInput.startDay);
     console.log(this.state.searchInput.backDay);
-    window.location.href="#Calendar";
+    window.location.href = "#Calendar";
   }
   render() {
     return (
@@ -54,19 +66,20 @@ class App extends Component {
             getSearchInput={this.getSearchInput}
             setSearchInput={this.setSearchInput}
             search={this.search} />
-          <Promotion 
-            promotData={Data.promotData} 
-            setSearchInput={this.setSearchInput}
-            getSearchInput={this.getSearchInput} 
-            search={this.search}/>
-          <Search 
+          <Promotion
+            promotData={Data.promotData}
             setSearchInput={this.setSearchInput}
             getSearchInput={this.getSearchInput}
-            search={this.search}/>
-          <Calendar 
+            search={this.search} />
+          <Search
             setSearchInput={this.setSearchInput}
             getSearchInput={this.getSearchInput}
-            search={this.search}/>
+            search={this.search} />
+          <Calendar
+            setSearchInput={this.setSearchInput}
+            getSearchInput={this.getSearchInput}
+            search={this.search}
+            book={this.book} />
           <Footer />
         </div>
       </BrowserRouter>

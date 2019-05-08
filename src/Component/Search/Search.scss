@@ -1,17 +1,21 @@
-.container{
-    background-image: url(./SearchBackground.jpg);
-    background-size: cover;
-    border-radius: 10px;
-}
 
 
-*{
-    font-family: serif !important;
-}
-
-.react-datepicker__input-container{
-    input{
-        border-radius: 5px !important;
-        width: 100% !important;
+#Search{
+    .container{
+        background-image: url(./2x1.png);
+        background-size: cover;
+        border-radius: 10px;
+    }
+    
+    
+    *{
+        font-family: serif !important;
+    }
+    
+    .react-datepicker__input-container{
+        input{
+            border-radius: 5px !important;
+            width: 100% !important;
+        }
     }
 }

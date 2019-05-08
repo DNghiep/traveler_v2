@@ -103,7 +103,7 @@ export default class Search extends Component{
                         </div>
                     </div>
                     
-                    <button className="btn btn-outline-light col-md-6 col-12 offset-md-3" 
+                    <button className="btn btn-outline-dark col-md-6 col-12 offset-md-3" 
                         onClick={this.props.search}
                         href="#Calendar">Let's Find</button>
                 </div>

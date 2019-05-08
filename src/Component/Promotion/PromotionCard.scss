@@ -1,24 +1,28 @@
-.card-title{
-    display: none;
-    cursor: pointer;
-    transform: scale(1.05);
-    font-weight: bold;
-}
-
-.card{
-    &:hover{
-        .card-title{
-            display: block;
-            animation: showup 0.5s 1;
-            @keyframes showup {
-                0%{
-                    transform: scale(1.0);
-                }
-                100%{
-                    transform: scale(1.05);
-                    font-weight: bold;
+.promotioncard{
+    .card-title{
+        display: none;
+        cursor: pointer;
+        transform: scale(1.05);
+        font-weight: bold;
+    }
+    
+    .card{
+        &:hover{
+            .card-title{
+                display: block;
+                animation: showup 0.5s 1;
+                @keyframes showup {
+                    0%{
+                        transform: scale(1.0);
+                    }
+                    100%{
+                        transform: scale(1.05);
+                        font-weight: bold;
+                    }
                 }
             }
         }
     }
 }
+
+

@@ -5,7 +5,7 @@ import "./PromotionCard.css";
 export default class PromotionCard extends Component {
     render() {
         return (
-            <div className={`card ${this.props.classSpec}`}>
+            <div className={`card ${this.props.classSpec} promotioncard`}>
                 <img
                     className="card-img"
                     src={require(`${this.props.imgUrl}`)}
