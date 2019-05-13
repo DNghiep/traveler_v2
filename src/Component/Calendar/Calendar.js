@@ -7,7 +7,7 @@ import CalendarCard from './CalendarCard';
 
 
 //Import calendarData
-import CalendarData from '/home/wei/Documents/Code/ttcnpm/traveler_v2/src/DataFiles/CalendarJson/Calendar';
+import CalendarData from './Calendar.1';
 
 export default class Calendar extends Component{
     constructor(props){
