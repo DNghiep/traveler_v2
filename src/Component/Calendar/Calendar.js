@@ -75,7 +75,7 @@ export default class Calendar extends Component{
         return(
             <div id="Calendar">
                 <div className="container py-3">
-                    <div className="row">
+                    {/* <div className="row">
 
                         <div className="btn-group col-12" role="group" aria-label="Basic example">
                             <button type="button" className="btn btn-info border-white col-1"
@@ -100,7 +100,7 @@ export default class Calendar extends Component{
                                 onClick={this.handleDayChange.bind(this, -3)}>{this.getDayOfWeek((curDay.getDay() + 6 + 3)%7)}</button>
                         </div>
                     
-                    </div>
+                    </div> */}
 
                     <div className="row mt-3">
 

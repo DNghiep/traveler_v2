@@ -14,6 +14,7 @@ export default class Header extends Component {
         super(props);
         this.handleDayClick = this.handleDayClick.bind(this);
         this.handleResetClick = this.handleResetClick.bind(this);
+        this.checkDayValid = this.checkDayValid.bind(this);
         this.state = {
             from: this.props.getSearchInput().startDay,
             to: this.props.getSearchInput().backDay
@@ -26,8 +27,21 @@ export default class Header extends Component {
             to: undefined,
         };
     }
+
+    checkDayValid(date){
+        let thisDay = new Date();
+        thisDay.setHours(0, 0, 0, 0);
+        if(!date) return true;
+        else if(date < thisDay){
+            alert("U can't find the day in the fast, idiot!!!!!!!");
+            return false;
+        }else return true;
+    }
+
     handleDayClick(day) {
         const range = DateUtils.addDayToRange(day, this.state);
+        if(!this.checkDayValid(range.from)) range.from = this.state.from;
+        if(!this.checkDayValid(range.to)) range.to = this.state.to;
         this.setState(range);
         this.props.setSearchInput({
             from: this.props.getSearchInput().from,

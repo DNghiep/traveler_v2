@@ -14,6 +14,7 @@ export default class Search extends Component{
         this.handleBackDayChange = this.handleBackDayChange.bind(this);
         this.handleChangeTo = this.handleChangeTo.bind(this);
         this.handleChangeFrom = this.handleChangeFrom.bind(this);
+        this.checkDayValid = this.checkDayValid.bind(this);
         this.state = {
             from: this.props.getSearchInput().from,
             to: this.props.getSearchInput().to,
@@ -50,21 +51,44 @@ export default class Search extends Component{
         })
     }
 
+    checkDayValid(date){
+        let thisDay = new Date();
+        thisDay.setHours(0, 0, 0, 0);
+        if(date < thisDay){
+            alert("U can't find the day in the fast, idiot!!!!!!!");
+            return false;
+        }else return true;
+    }
+
     handleStartDayChange(day) {
+        let backDay = this.props.getSearchInput().backDay;
+        if(day > backDay){
+            backDay = day;
+            day = this.props.getSearchInput().backDay;
+        }
+        if(!this.checkDayValid(day)) day = this.state.selectedStartDay;
+        if(!this.checkDayValid(backDay)) backDay = this.state.selectedBackDay;
         this.setState({ selectedStartDay: day });
         this.props.setSearchInput({
             from: this.props.getSearchInput().from,
             to: this.props.getSearchInput().to,
             startDay: day,
-            backDay: this.props.getSearchInput().backDay
+            backDay: backDay
         })
     }
     handleBackDayChange(day) {
+        let startDay = this.props.getSearchInput().startDay;
+        if(day < startDay){
+            startDay = day;
+            day = this.props.getSearchInput().startDay;
+        }
+        if(!this.checkDayValid(day)) day = this.state.selectedBackDay;
+        if(!this.checkDayValid(startDay)) startDay = this.state.selectedStartDay;
         this.setState({ selectedBackDay: day });
         this.props.setSearchInput({
             from: this.props.getSearchInput().from,
             to: this.props.getSearchInput().to,
-            startDay: this.props.getSearchInput().startDay,
+            startDay: startDay,
             backDay: day
         })
     }
