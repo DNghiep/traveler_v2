@@ -35,29 +35,25 @@ class SignUpForm extends Component {
 
     render() {
         return (
-        <div className="FormCenter">
-            <form onSubmit={this.handleSubmit} className="FormFields">
-              <div className="FormField">
-                <label className="FormField__Label" htmlFor="name">Full Name</label>
-                <input type="text" id="name" className="FormField__Input" placeholder="Enter your full name at least 4 characters" name="name" value={this.state.name} onChange={this.handleChange} />
+        <div className="formcenter">
+            <form onSubmit={this.handleSubmit} className="formfields">
+              <div className="formfield">
+                <label className="formfield-label" htmlFor="name">Full Name</label>
+                <input type="text" id="name" className="formfield-input" placeholder="Enter your full name at least 4 characters" name="name" value={this.state.name} onChange={this.handleChange} />
               </div>
-              <div className="FormField">
-                <label className="FormField__Label" htmlFor="password">Password</label>
-                <input type="password" id="password" className="FormField__Input" placeholder="Enter your password at least 4 characters" name="password" value={this.state.password} onChange={this.handleChange} />
+              <div className="formfield">
+                <label className="formfield-label" htmlFor="password">Password</label>
+                <input type="password" id="password" className="formfield-input" placeholder="Enter your password at least 4 characters" name="password" value={this.state.password} onChange={this.handleChange} />
               </div>
-              <div className="FormField">
-                <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
-              </div>
-
-              <div className="FormField">
-                <label className="FormField__CheckboxLabel">
-                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
-                </label>
+              <div className="formfield">
+                <label className="formfield-label" htmlFor="email">E-Mail Address</label>
+                <input type="email" id="email" className="formfield-input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
               </div>
 
-              <div className="FormField">
-                  <button className="FormField__Button mr-20">Create account</button> <Link to="/sign-in" className="FormField__Link">I'm already had account</Link>
+              
+
+              <div className="formfield">
+                  <button className="formfield-button mr-20">Create account</button>
               </div>
             </form>
           </div>

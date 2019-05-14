@@ -7,35 +7,61 @@ class ManagerPage extends Component {
 
       this.state = {
           email: '',
-          address: '',
-          name: '',
-          phonenumber:''
+          adress: '',
+          phonenumber: '',
+          name: ''
       };
+
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+      let target = e.target;
+      let value = target.type === 'checkbox' ? target.checked : target.value;
+      let name = target.name;
+
+      this.setState({
+        [name]: value
+      });
+  }
+
+  handleSubmit(e) {
+      e.preventDefault();
+
+      console.log('The form was submitted with the following data:');
+      console.log(this.state);
   }
 
 
   render() {
       return (
-      <div className="FormCenter">
-          <form onSubmit={this.handleSubmit} className="FormFields">
-            <div className="FormField">
-              <label className="FormField__Label" htmlFor="name">Full Name</label>
-              <input type="text" id="name" className="FormField__Input" placeholder="User Name" name="name" value={this.state.name} onChange={this.handleChange} />
+      <div className="formcenter">
+          <form onSubmit={this.handleSubmit} className="formfields">
+            <div className="formfield">
+              <label className="formfield-label" htmlfor="name">full Name</label>
+              <input type="text" id="name" className="formfield-input" placeholder="User Name" name="name" value={this.state.name} onChange={this.handleChange} />
             </div>
-            <div className="FormField">
-              <label className="FormField__Label" htmlFor="password">Password</label>
-              <input type="password" id="password" className="FormField__Input" placeholder="User Address" name="address" value={this.state.name} onChange={this.handleChange} />
+            <div className="formfield">
+              <label className="formfield-label" htmlfor="adress">Adress</label>
+              <input type="text" id="adress" className="formfield-input" placeholder="User Address" name="adress" value={this.state.adress} onChange={this.handleChange} />
             </div>
-            <div className="FormField">
-              <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-              <input type="email" id="email" className="FormField__Input" placeholder="User Email" name="email" value={this.state.email} onChange={this.handleChange} />
+            <div className="formfield">
+              <label className="formfield-label" htmlfor="email">E-Mail Address</label>
+              <input type="email" id="email" className="formfield-input" placeholder="User Email" name="email" value={this.state.email} onChange={this.handleChange} />
             </div>
-            <div className="FormField">
-              <label className="FormField__Label" htmlFor="phonenumber">Phone Number</label>
-              <input type="number" id="phonenumber" className="FormField__Input" placeholder="User Phone Number" name="phonenumber" value={this.state.number} onChange={this.handleChange} />
+            <div className="formfield">
+              <label className="formfield-label" htmlfor="phonenumber">Phone Number</label>
+              <input type="number" id="phonenumber" className="formfield-input" placeholder="User Phone Number" name="phonenumber" value={this.state.number} onChange={this.handleChange} />
             </div>
-            <div className="FormField">
-                <Link to="/history" className="FormField__Link">My History</Link> <Link to="/change-password" className="FormField__Link">Change my password</Link>
+            <div className="formfield">
+            <button className="formfield-Button mr-20">Update infomation</button>
+            </div>
+            <div className="formfield">
+                <label className="formfield__link">My History</label>
+            </div>
+            <div className="formfield">
+                <label className="formfield__link">Change my password</label>
             </div>
           </form>
         </div>
