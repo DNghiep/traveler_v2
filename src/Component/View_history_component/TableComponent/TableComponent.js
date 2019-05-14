@@ -192,6 +192,7 @@ class TableComponent extends Component {
     return (
       <div>
         <div className="table-container">
+        <h1>Your history</h1>
           <ReactTable
             data={this.state.data}
             columns={columns}
