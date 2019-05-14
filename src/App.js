@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
 
 //Import component for content page
-import NavBar from './Component/NavBar/NavBar';
-import Header from './Component/Header/Header';
-import Promotion from './Component/Promotion/Promotion';
-import Search from './Component/Search/Search';
-import Calendar from './Component/Calendar/Calendar';
-import Footer from './Component/Footer/Footer';
+import NavBar from "./Component/NavBar/NavBar";
+import Header from "./Component/Header/Header";
+import Promotion from "./Component/Promotion/Promotion";
+import Search from "./Component/Search/Search";
+import Calendar from "./Component/Calendar/Calendar";
+import Footer from "./Component/Footer/Footer";
 
 //Import promotData
-import Data from './DataFiles/PromotionJson/PromotData';
-
+import Data from "./DataFiles/PromotionJson/PromotData";
 
 class App extends Component {
   constructor(props) {
@@ -24,16 +23,15 @@ class App extends Component {
         startDay: new Date(),
         backDay: undefined
       }
-    }
+    };
     this.getSearchInput = this.getSearchInput.bind(this);
     this.setSearchInput = this.setSearchInput.bind(this);
     this.search = this.search.bind(this);
     this.book = this.book.bind(this);
   }
 
-
   book(data, e) {
-    alert('booked!');
+    alert("booked!");
   }
 
   getSearchInput() {
@@ -41,9 +39,9 @@ class App extends Component {
   }
 
   setSearchInput(searchInput) {
-    this.setState((state) => ({
+    this.setState(state => ({
       searchInput: searchInput
-    }))
+    }));
   }
 
   search() {
@@ -61,25 +59,29 @@ class App extends Component {
           <Header
             getSearchInput={this.getSearchInput}
             setSearchInput={this.setSearchInput}
-            search={this.search} />
+            search={this.search}
+          />
           <Promotion
             promotData={Data.promotData}
             setSearchInput={this.setSearchInput}
             getSearchInput={this.getSearchInput}
-            search={this.search} />
+            search={this.search}
+          />
           <Search
             setSearchInput={this.setSearchInput}
             getSearchInput={this.getSearchInput}
-            search={this.search} />
+            search={this.search}
+          />
           <Calendar
             setSearchInput={this.setSearchInput}
             getSearchInput={this.getSearchInput}
             search={this.search}
-            book={this.book} />
+            book={this.book}
+          />
           <Footer />
         </div>
       </BrowserRouter>
-    )
+    );
   }
 }
 

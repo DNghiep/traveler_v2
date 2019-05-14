@@ -10,6 +10,9 @@ import pic from "./image1.jpg";
 
 import axios from "axios";
 
+import { getCookie } from "../../Cookies/getCookie";
+import { setCookie } from "../../Cookies/setCookie";
+
 class TableComponent extends Component {
   constructor(props) {
     super(props);
@@ -34,13 +37,17 @@ class TableComponent extends Component {
   }
 
   getData = async () => {
-    let url =
-      "http://localhost:3000/api/history?onwer_id=5cd790ba4b5a5106d82ba616";
-
+    let u_id = getCookie("u_id");
     let admin_url = "http://localhost:3000/api/history/all";
+    let url = "";
+    if (u_id) {
+      url = "http://localhost:3000/api/history?onwer_id=" + u_id;
+    } else {
+      url = admin_url;
+    }
 
     try {
-      const data = await axios.get(admin_url);
+      const data = await axios.get(url);
       //console.log(data)
       //alert(data);
       this.setState({
@@ -113,16 +120,20 @@ class TableComponent extends Component {
       {
         Header: "Depart",
         accessor: "start_time",
-        Cell: props => <div className="cell-text">{this.formatDate(props.value)}</div>
+        Cell: props => (
+          <div className="cell-text">{this.formatDate(props.value)}</div>
+        )
       },
       {
         Header: "Return Date",
         accessor: "end_time",
-        Cell: props => <div className="cell-text">{this.formatDate(props.value)}</div>
+        Cell: props => (
+          <div className="cell-text">{this.formatDate(props.value)}</div>
+        )
       },
       {
         Header: "Price",
-        accessor: "fee",
+        accessor: "total_fee",
         Cell: props => (
           <div className="cell-text">
             {Number(props.value).toLocaleString()} VND
@@ -215,7 +226,7 @@ class TableComponent extends Component {
                 <h4>
                   Total:{" "}
                   <h5>
-                    {Number(this.state.selected_data.price).toLocaleString()}{" "}
+                    {Number(this.state.selected_data.total_fee).toLocaleString()}{" "}
                     VND
                   </h5>
                 </h4>
