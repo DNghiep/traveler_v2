@@ -4,7 +4,7 @@ const HOSTAPI = 'http://localhost:3000/api/search/';
 
 
 
-    module.exports.getStationId = async function  getStationId(stationName){
+    async function  getStationId(stationName){
         const fetchAddr = `${HOSTAPI}getstation`;
         let _id = '';
         await fetch(fetchAddr, {
@@ -17,7 +17,7 @@ const HOSTAPI = 'http://localhost:3000/api/search/';
         return _id;
     }
     
-    module.exports.search = async function  search(fromStationName, toStationName, depart_time){
+    async function  search(fromStationName, toStationName, depart_time){
         const fetchAddr = `${HOSTAPI}`;
         const body = new Object();
         let result = [];
@@ -38,14 +38,14 @@ const HOSTAPI = 'http://localhost:3000/api/search/';
         return result;
     }
     
-    module.exports.searchToDirect = async function  searchToDirect(fromStationName, toStationName, depart_time, re_depart_time){
+    async function  searchToDirect(fromStationName, toStationName, depart_time, re_depart_time){
         const go = await this.search(fromStationName, toStationName, depart_time);
         const back = await this.search(fromStationName, toStationName, re_depart_time);
         const result = go.concat(back);
         return result;
     }
 
-    module.exports.findStation = async function findStation(stationId){
+    async function findStation(stationId){
         let name = "";
         const fetchAddr = `${HOSTAPI}${stationId}`;
         fetch(fetchAddr)
