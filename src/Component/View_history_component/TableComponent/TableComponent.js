@@ -1,14 +1,14 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 import "./TableComponent.css";
 import data from "./data.js";
 // Import React Table
-import ReactTable from "./node_modules/react-table";
-import "./node_modules/react-table/react-table.css";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
 
-import Modal from "./node_modules/react-awesome-modal";
-import pic from "../../component_data/image/image1.jpg";
+import Modal from "react-awesome-modal";
+import pic from "./image1.jpg";
 
-import axios from "./node_modules/axios";
+import axios from "axios";
 
 class TableComponent extends Component {
   constructor(props) {

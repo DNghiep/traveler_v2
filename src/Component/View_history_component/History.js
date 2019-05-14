@@ -1,4 +1,4 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 import "./History.css";
 //import ItemComponent from "../item_component/ItemComponent";
 import TableComponent from "./TableComponent/TableComponent";
