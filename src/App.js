@@ -8,7 +8,8 @@ import Footer from './Navigation_Footer/footer';
 //Import component for content page
 import Home from './content_component/home';
 import Calendar from './content_component/calendar';
-import Account from './content_component/account';
+import Account from './content_component/SignIn_SignUp';
+import AccountManager from './content_component/Account_manager';
 import Cart from './content_component/cart';
 
 class App extends Component {
