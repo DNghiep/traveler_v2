@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./TableComponent.css";
-import data from "./data.js";
+import data_sample from "./data.js";
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -50,9 +50,15 @@ class TableComponent extends Component {
       const data = await axios.get(url);
       //console.log(data)
       //alert(data);
-      this.setState({
-        data: data.data
-      });
+      if (data) {
+        this.setState({
+          data: data.data
+        })
+      }else{
+        this.setState({
+          data: data_sample
+        })
+      }
     } catch (error) {
       alert(error);
     }
@@ -75,11 +81,11 @@ class TableComponent extends Component {
 
   componentDidMount() {
     // axios.post()
-    // this.setState({
-    //   data: data
-    // });
+    this.setState({
+      data: data_sample
+    });
 
-    this.getData();
+   // this.getData();
   }
   render() {
     const columns = [
@@ -226,7 +232,9 @@ class TableComponent extends Component {
                 <h4>
                   Total:{" "}
                   <h5>
-                    {Number(this.state.selected_data.total_fee).toLocaleString()}{" "}
+                    {Number(
+                      this.state.selected_data.total_fee
+                    ).toLocaleString()}{" "}
                     VND
                   </h5>
                 </h4>
@@ -246,9 +254,7 @@ class TableComponent extends Component {
               >
                 <h5>Close</h5>
               </button>
-              <button type="button" class="block">
-                <h5>Print PDF</h5>
-              </button>
+            
             </div>
           </div>
         </Modal>
