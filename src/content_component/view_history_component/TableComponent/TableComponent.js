@@ -8,6 +8,8 @@ import "react-table/react-table.css";
 import Modal from "react-awesome-modal";
 import pic from "../../component_data/image/image1.jpg";
 
+import axios from "axios";
+
 class TableComponent extends Component {
   constructor(props) {
     super(props);
@@ -30,31 +32,68 @@ class TableComponent extends Component {
       visible: false
     });
   }
+
+  getData = async () => {
+    let url =
+      "http://localhost:3000/api/history?onwer_id=5cd790ba4b5a5106d82ba616";
+
+    let admin_url = "http://localhost:3000/api/history/all";
+
+    try {
+      const data = await axios.get(admin_url);
+      //console.log(data)
+      //alert(data);
+      this.setState({
+        data: data.data
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+  componentWillMount() {
+    //this.getData();
+  }
+
+  formatDate(date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  }
+
   componentDidMount() {
-    this.setState({
-      data: data
-    });
+    // axios.post()
+    // this.setState({
+    //   data: data
+    // });
+
+    this.getData();
   }
   render() {
     const columns = [
-      {
-        Header: "By",
-        accessor: "by",
-        filterable: true,
-        Filter: ({ filter, onChange }) => (
-          <select
-            value={filter ? filter.value : "0"}
-            onChange={event => onChange(event.target.value)}
-          >
-            <option value="">--</option>
-            <option value="Car">Car</option>
-            <option value="Plane">Plane</option>
-            <option value="Train">Train</option>
-          </select>
-        ),
-        maxWidth: 75,
-        Cell: props => <div className="cell-text">{props.value}</div>
-      },
+      // {
+      //   Header: "By",
+      //   accessor: "by",
+      //   filterable: true,
+      //   // Filter: ({ filter, onChange }) => (
+      //   //   <select
+      //   //     value={filter ? filter.value : "0"}
+      //   //     onChange={event => onChange(event.target.value)}
+      //   //   >
+      //   //     <option value="">--</option>
+      //   //     <option value="Car">Car</option>
+      //   //     <option value="Plane">Plane</option>
+      //   //     <option value="Train">Train</option>
+      //   //   </select>
+      //   // ),
+      //   maxWidth: 75,
+      //   Cell: props => <div className="cell-text">{props.value}</div>
+      // },
       {
         Header: "Id",
         accessor: "_id",
@@ -73,17 +112,17 @@ class TableComponent extends Component {
       },
       {
         Header: "Depart",
-        accessor: "date_go",
-        Cell: props => <div className="cell-text">{props.value}</div>
+        accessor: "start_time",
+        Cell: props => <div className="cell-text">{this.formatDate(props.value)}</div>
       },
       {
         Header: "Return Date",
-        accessor: "date_back",
-        Cell: props => <div className="cell-text">{props.value}</div>
+        accessor: "end_time",
+        Cell: props => <div className="cell-text">{this.formatDate(props.value)}</div>
       },
       {
         Header: "Price",
-        accessor: "price",
+        accessor: "fee",
         Cell: props => (
           <div className="cell-text">
             {Number(props.value).toLocaleString()} VND
@@ -94,18 +133,18 @@ class TableComponent extends Component {
         Header: "Status",
         accessor: "status",
 
-        filterable: true,
-        Filter: ({ filter, onChange }) => (
-          <select
-            value={filter ? filter.value : "0"}
-            onChange={event => onChange(event.target.value)}
-          >
-            <option value="">--</option>
-            <option value="Done">Done</option>
-            <option value="Pending">Pending</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
-        ),
+        // filterable: true,
+        // Filter: ({ filter, onChange }) => (
+        //   <select
+        //     value={filter ? filter.value : "0"}
+        //     onChange={event => onChange(event.target.value)}
+        //   >
+        //     <option value="">--</option>
+        //     <option value="Done">Done</option>
+        //     <option value="Pending">Pending</option>
+        //     <option value="Cancelled">Cancelled</option>
+        //   </select>
+        // ),
         maxWidth: 100,
         Cell: props => <div className="cell-text">{props.value}</div> // Tùy biến component Cell.
       },
@@ -166,8 +205,8 @@ class TableComponent extends Component {
                 <h4>
                   Date:{" "}
                   <h5>
-                    {this.state.selected_data.date_go} ->{" "}
-                    {this.state.selected_data.date_back}
+                    {this.formatDate(this.state.selected_data.start_time)} ->{" "}
+                    {this.formatDate(this.state.selected_data.end_time)}
                   </h5>
                 </h4>
                 <h4>
