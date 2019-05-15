@@ -46,7 +46,7 @@ export default class CalendarCard extends Component {
                         <h5 className="card-title">{`${this.state.fromName} - ${this.state.toName}`}</h5>
                         <p className="card-text">{`Day: ${this.state.date}/${this.state.month}`}</p>
                         <p className="card-text">{`Time: ${this.state.hours}h`}</p>
-                        <p className="card-text">{`Remain seat: ${this.state.seat_remain}`}</p>
+                        {/* <p className="card-text">{`Remain seat: ${this.state.seat_remain}`}</p> */}
                         <p className="card-text">{`Price: ${this.state.base_fee} VND`}</p>
                         <button className="btn btn-outline-info"
                             onClick={this.props.book.bind(this, this.props.data)}>Book now!</button>
