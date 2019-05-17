@@ -38,10 +38,11 @@ class TableComponent extends Component {
 
   getData = async () => {
     let u_id = getCookie("u_id");
-    let admin_url = "http://localhost:3000/api/history/all";
+    console.log("UID from history: " + u_id);
+    let admin_url = "http://localhost:3001/api/history/all";
     let url = "";
     if (u_id) {
-      url = "http://localhost:3000/api/history?onwer_id=" + u_id;
+      url = "http://localhost:3001/api/history?owner_id=" + u_id;
     } else {
       url = admin_url;
     }
@@ -53,11 +54,11 @@ class TableComponent extends Component {
       if (data) {
         this.setState({
           data: data.data
-        })
-      }else{
+        });
+      } else {
         this.setState({
           data: data_sample
-        })
+        });
       }
     } catch (error) {
       alert(error);
@@ -81,11 +82,11 @@ class TableComponent extends Component {
 
   componentDidMount() {
     // axios.post()
-    this.setState({
-      data: data_sample
-    });
+    // this.setState({
+    //   data: data_sample
+    // });
 
-   // this.getData();
+    this.getData();
   }
   render() {
     const columns = [
@@ -115,24 +116,24 @@ class TableComponent extends Component {
       },
       {
         Header: "From",
-        accessor: "from",
+        accessor: "from_str",
         Cell: props => <div className="cell-text">{props.value}</div>
       },
       {
         Header: "To",
-        accessor: "to",
+        accessor: "to_str",
         Cell: props => <div className="cell-text">{props.value}</div>
       },
       {
         Header: "Depart",
-        accessor: "start_time",
+        accessor: "depart_time",
         Cell: props => (
           <div className="cell-text">{this.formatDate(props.value)}</div>
         )
       },
       {
         Header: "Return Date",
-        accessor: "end_time",
+        accessor: "arrival_time",
         Cell: props => (
           <div className="cell-text">{this.formatDate(props.value)}</div>
         )
@@ -192,7 +193,7 @@ class TableComponent extends Component {
     return (
       <div>
         <div className="table-container">
-        <h1>Your history</h1>
+          <h1>My history</h1>
           <ReactTable
             data={this.state.data}
             columns={columns}
@@ -215,16 +216,16 @@ class TableComponent extends Component {
                   ID: <h5>{this.state.selected_data._id}</h5>
                 </h4>
                 <h4>
-                  From: <h5>{this.state.selected_data.from}</h5>
+                  From: <h5>{this.state.selected_data.from_str}</h5>
                 </h4>
                 <h4>
-                  To: <h5>{this.state.selected_data.to}</h5>
+                  To: <h5>{this.state.selected_data.to_str}</h5>
                 </h4>
                 <h4>
                   Date:{" "}
                   <h5>
-                    {this.formatDate(this.state.selected_data.start_time)} ->{" "}
-                    {this.formatDate(this.state.selected_data.end_time)}
+                    {this.formatDate(this.state.selected_data.depart_time)} ->{" "}
+                    {this.formatDate(this.state.selected_data.arrival_time)}
                   </h5>
                 </h4>
                 <h4>
@@ -255,7 +256,6 @@ class TableComponent extends Component {
               >
                 <h5>Close</h5>
               </button>
-            
             </div>
           </div>
         </Modal>
