@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import axios from "axios";
+import { getCookie } from "../../Cookies/getCookie";
+import { setCookie } from "../../Cookies/setCookie";
 class Signinform extends Component {
     constructor() {
         super();
@@ -30,7 +32,22 @@ class Signinform extends Component {
         console.log('The form was submitted with the following data:');
         console.log(this.state);
     }
-
+    onSignIn(email, password) {
+      let url = "http://localhost:3000/api/login";
+      axios
+        .post(url, { email: email, password: password})
+        .then(response => {
+          alert(response.data);
+          setCookie("u_id",response.data,365);
+          if (getCookie("u_id") == "Login Fail") {
+            setCookie("islogin", 0 , 365)
+          } else {
+            setCookie("islogin", 1 , 365)
+            window.location.reload();
+          }
+          console.log(response)
+        });
+    }
     render() {
         return (
         <div className="formcenter">
@@ -46,7 +63,14 @@ class Signinform extends Component {
               </div>
 
               <div className="formfield">
-                  <button className="formfield-button mr-20">Sign in</button>
+                  <button className="formfield-button mr-20"
+                  onClick={() => {
+                    this.onSignIn(
+                      this.state.email,
+                      this.state.password
+                    );
+                  }}
+                  >Sign in</button>
               </div>
             </form>
           </div>

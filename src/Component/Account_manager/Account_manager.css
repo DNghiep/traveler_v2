@@ -1,8 +1,8 @@
 .app {
   height: 100vh;
   display: grid;
-  color: #DEB887;
-  background-color: #DEB887;
+  color: #F0FFFF;
+  background-color: #F0FFFF;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
