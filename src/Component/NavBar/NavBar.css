@@ -1,10 +1,29 @@
 .navbar {
-  background-image: url(./HeaderBackground.jpg.jpg);
-  background-size: auto;
+  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .navbar .navbar-brand {
-  font-size: 20px;
+  font-size: 30px;
+  -webkit-transform: scaleX(1.2);
+          transform: scaleX(1.2);
+  margin-left: 20px;
   font-weight: bold;
+  color: white;
+  -webkit-transition: all 0.3s 1;
+  transition: all 0.3s 1;
+}
+
+.navbar .navbar-brand:hover {
+  color: white;
+}
+
+.navbar .nav-item .nav-link {
+  color: white;
+}
+
+.navbar .nav-item .nav-link:hover {
+  color: white;
+  border-bottom: 2px white solid;
 }
 /*# sourceMappingURL=NavBar.css.map */

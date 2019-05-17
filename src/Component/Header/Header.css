@@ -3,26 +3,52 @@
 }
 
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-  background-color: #3aa2b3 !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
   color: white;
-}
-
-.Selectable .DayPicker-Day {
   border-radius: 0 !important;
 }
 
+.Selectable .DayPicker-Day {
+  border-radius: 15px !important;
+}
+
 .Selectable .DayPicker-Day--start {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
   border-top-left-radius: 50% !important;
   border-bottom-left-radius: 50% !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
 .Selectable .DayPicker-Day--end {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
   border-top-right-radius: 50% !important;
   border-bottom-right-radius: 50% !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
 .jumbotron {
-  background-image: url(./HeaderBackground.jpg);
-  background-size: auto;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 0 !important;
+}
+
+#Header .btn {
+  border-color: white;
+  border-radius: 20px;
+  margin-left: 10px;
+  -webkit-box-shadow: 5px inset black;
+          box-shadow: 5px inset black;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#Header .btn:hover {
+  border-color: #007BFF;
+  color: black;
+  background-color: white;
+  -webkit-box-shadow: 10px white;
+          box-shadow: 10px white;
+  font-weight: bold;
 }
 /*# sourceMappingURL=Header.css.map */

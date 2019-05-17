@@ -5,7 +5,7 @@ import './NavBar.css';
 export default class NavBar extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-md navbar-light">
+            <nav className="navbar navbar-expand-md navbar-light sticky-top" id="NavBar">
                     <a className="navbar-brand" href="#Header">Traveller</a>
                     <button className="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"><i className="far fa-square" /></button>
                     <div className="collapse navbar-collapse" id="collapsibleNavId">

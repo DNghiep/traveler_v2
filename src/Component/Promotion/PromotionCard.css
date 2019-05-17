@@ -1,12 +1,31 @@
-.promotioncard .card-title {
-  display: none;
-  cursor: pointer;
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
-  font-weight: bold;
+.promotioncard {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
 }
 
-.promotioncard:hover .card-title {
+.promotioncard .btn {
+  display: none;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+}
+
+.promotioncard .card-img {
+  border-radius: 10px;
+}
+
+.promotioncard .card-img-overlay {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.promotioncard:hover .btn {
+  display: block;
+}
+
+.promotioncard:hover .card-img-overlay {
   display: block;
   -webkit-animation: showup 0.5s 1;
           animation: showup 0.5s 1;
@@ -14,25 +33,19 @@
 
 @-webkit-keyframes showup {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    background-color: rgba(0, 0, 0, 0);
   }
   100% {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
-    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 
 @keyframes showup {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    background-color: rgba(0, 0, 0, 0);
   }
   100% {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
-    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 /*# sourceMappingURL=PromotionCard.css.map */

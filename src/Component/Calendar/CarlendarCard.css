@@ -1,1 +1,31 @@
-/* No CSS *//*# sourceMappingURL=CarlendarCard.css.map */
+.calendarcard .card {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.calendarcard .card .card-body h5 {
+  color: white;
+}
+
+.calendarcard .card .card-body p {
+  color: white;
+}
+
+.calendarcard .card .card-body .btn {
+  border-color: white;
+  border-radius: 15px;
+  margin-left: 10px;
+  -webkit-box-shadow: 5px inset black;
+          box-shadow: 5px inset black;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.calendarcard .card .card-body .btn:hover {
+  border-color: #007BFF;
+  color: black;
+  background-color: white;
+  -webkit-box-shadow: 10px white;
+          box-shadow: 10px white;
+  font-weight: bold;
+}
+/*# sourceMappingURL=CarlendarCard.css.map */

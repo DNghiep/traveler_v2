@@ -1,8 +1,24 @@
 .navbar{
-    background-image: url(./HeaderBackground.jpg.jpg);
-    background-size: auto;
+    background-color: rgba($color: #000000, $alpha: 0.0);
     .navbar-brand{
-        font-size: 20px;
+        font-size: 30px;
+        transform: scaleX(1.2);
+        margin-left: 20px;
         font-weight: bold;
+        color: white;
+        transition: all 0.3s 1;
+        &:hover{
+            color: white;
+        }
     }
+    .nav-item{
+        .nav-link{
+            color: white;
+            &:hover{
+                color: white;
+                border-bottom: 2px white solid;
+            }
+        }
+    }
+    background-color: rgba($color: #000000, $alpha: 0.5);
 }

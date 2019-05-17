@@ -1,6 +1,8 @@
 /* eslint-disable react/no-typos */
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import './App.css';
 
 //Import component for content page
@@ -10,12 +12,12 @@ import Promotion from './Component/Promotion/Promotion';
 import Search from './Component/Search/Search';
 import Calendar from './Component/Calendar/Calendar';
 import Footer from './Component/Footer/Footer';
+import BookingInfo from './Component/BookingInfo/BookingInfo';
 
-//Import promotData
+//Import promotionData
 import Data from './DataFiles/PromotionJson/PromotData';
 
 //Import fetch
-import BookingFetch from './backEnd/fetchBooking';
 const fetch = require('node-fetch');
 
 const HOSTAPISEARCHING = 'http://localhost:3001/api/search/';
@@ -24,194 +26,245 @@ const HOSTAPIBOOKING = 'http://localhost:3001/api/booking/';
 
 class App extends Component {
 
-  // ComponentDidMount(){
-  //   this.search();
-  // }
-
-  constructor(props) {
-    super(props);
-    this.getSearchInput = this.getSearchInput.bind(this);
-    this.setSearchInput = this.setSearchInput.bind(this);
-    this.search = this.search.bind(this);
-    this.book = this.book.bind(this);
-    this.getStationId = this.getStationId.bind(this);
-    this.searchGetData = this.searchGetData.bind(this);
-    this.searchToDirect = this.searchToDirect.bind(this);
-    this.findStation = this.findStation.bind(this);
-    this.bookingGetData = this.bookingGetData.bind(this);
-    this.findStationName = this.findStationName.bind(this);
-    this.state = {
-      userId: "5cda63ab39995314a3fbdd6d",
-      searchInput: {
-        from: undefined,
-        to: undefined,
-        startDay: new Date(),
-        backDay: undefined
-      },
-      SearchData: undefined
-    }
-  }
-  ///////////////////////////////////////////
-  async getStationId(stationName) {
-    const fetchAddr = `${HOSTAPISEARCHING}getstation`;
-    let _id = '';
-    await fetch(fetchAddr, {
-      method: 'post',
-      body: JSON.stringify({ stationName: stationName }),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(res => res.json())
-      .then(json => _id = json._id);
-    
-    return _id;
-  }
-
-  async searchGetData(fromStationName, toStationName, depart_time) {
-    const fetchAddr = `${HOSTAPISEARCHING}`;
-    // console.log(`station name: ${fromStationName}`);
-    // console.log(`station name: ${toStationName}`);
-    console.log(depart_time);
-    const body = new Object();
-    let result = [];
-    if (fromStationName) body.from_id = await this.getStationId(fromStationName);
-    if (toStationName) body.to_id = await this.getStationId(toStationName);
-    if (depart_time) body.depart_time = depart_time;
-    // console.log(body);
-    await fetch(fetchAddr, {
-      method: 'post',
-      body: JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        // result = json;
-        result = json;
-      })
-    console.log(result);
-    return result;
-  }
-
-  async searchToDirect(fromStationName, toStationName, depart_time, re_depart_time) {
-    console.log("Run search");
-    const go = await this.searchGetData(fromStationName, toStationName, depart_time);
-    let back = [];
-    if (re_depart_time) back = await this.searchGetData(toStationName, fromStationName, re_depart_time);
-    const result = await go.concat(back);
-    const stationMap = await this.findStation();
-    for (let i = 0; i < result.length; i++) {
-      result[i].fromStationName = stationMap[result[i].from_id];
-      result[i].toStationName = stationMap[result[i].to_id];
-      console.log(result[i].fromStationName);
-    }
-    return result;
-  }
-
-  async findStation() {
-    let stationMap = [];
-    const fetchAddr = `${HOSTAPISEARCHING}stations`;
-    await fetch(fetchAddr)
-      .then(res => res.json())
-      .then(json => {
-        json.forEach(element => {
-          stationMap[element._id] = element.name;
-        })
-      });
-    console.log(stationMap);
-    return stationMap;
-  }
-  /////////////////////////////////////////////////////////////
-  async bookingGetData(userId, tripId) {
-    const fetchAddr = `${HOSTAPIBOOKING}${userId}-${tripId}`;
-    fetch(fetchAddr)
-      .then(res => {
-        if (res.status == 503) {
-          console.log({ status: 503 });
-          return { status: 503 }
-        }
-        if (res.status == 400) {
-          console.log({ status: 400 });
-          return { status: 400 }
-        }
-        else return res.json();
-      })
-      .then(json => console.log(json));
-  }
-  ///////////////////////////////////////////////////////////////
-
-
-
-  book(data, e) {
-    this.bookingGetData(this.state.userId, data._id);
-    alert('booked!');
-  }
-
-  getSearchInput() {
-    return this.state.searchInput;
-  }
-
-  setSearchInput(searchInput) {
-    this.setState((state) => ({
-      searchInput: searchInput
-    }))
-  }
-
-  async findStationName(element) {
-    element.fromStationName = await this.findStation(element.from_id);
-    element.toStationName = await this.findStation(element.to_id);
-  }
-
-  async search() {
-    console.log(`Search For: ${this.state.searchInput.from}`);
-    console.log(this.state.searchInput.to);
-    console.log(this.state.searchInput.startDay);
-    console.log(this.state.searchInput.backDay);
-    const searchOutput = await this.searchToDirect(this.state.searchInput.from,
-      this.state.searchInput.to,
-      this.state.searchInput.startDay,
-      this.state.searchInput.backDay);
-    // await searchOutput.forEach(element => {
-    //   this.findStationName(element);
-    // })
-    // for (let i = 0; i < searchOutput.length; i++) {
-    //   await this.findStationName(searchOutput[i]);
+    // ComponentDidMount(){
+    //   this.search();
     // }
-    await this.setState({
-      SearchData: searchOutput
-    })
-    await console.log(this.state.SearchData);
-    window.location.href = "#Calendar";
-  }
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="container-fluid px-0">
-          <NavBar />
-          <Header
-            getSearchInput={this.getSearchInput}
-            setSearchInput={this.setSearchInput}
-            search={this.search} />
-          <Promotion
-            promotData={Data.promotData}
-            setSearchInput={this.setSearchInput}
-            getSearchInput={this.getSearchInput}
-            search={this.search} />
-          <Search
-            setSearchInput={this.setSearchInput}
-            getSearchInput={this.getSearchInput}
-            search={this.search} />
-          <Calendar
-            setSearchInput={this.setSearchInput}
-            getSearchInput={this.getSearchInput}
-            search={this.search}
-            book={this.book}
-            data={this.state.SearchData}
-            findStation={this.findStation} />
-          <Footer />
-        </div>
-      </BrowserRouter>
-    )
-  }
+
+    constructor(props) {
+        super(props);
+        this.getSearchInput = this.getSearchInput.bind(this);
+        this.setSearchInput = this.setSearchInput.bind(this);
+        this.search = this.search.bind(this);
+        this.book = this.book.bind(this);
+        this.searchGetData = this.searchGetData.bind(this);
+        this.searchToDirect = this.searchToDirect.bind(this);
+        this.bookingGetData = this.bookingGetData.bind(this);
+        this.confirmBooking = this.confirmBooking.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleChangeNumberOfTicket = this.handleChangeNumberOfTicket.bind(this);
+        this.state = {
+            userId: "5cda63ab39995314a3fbdd6d",
+            searchInput: {
+                from: undefined,
+                to: undefined,
+                // startDay: new Date(new Date().setHours(0, 0, 0)),
+                startDay: undefined,
+                backDay: undefined
+            },
+            SearchData: undefined,
+            didSearch: false,
+            bookingData: {
+                _id: undefined,
+                from_name: undefined,
+                to_name: undefined,
+                depart_time: new Date(),
+                arrival_time: new Date(),
+                base_fee: undefined,
+                seat_remain: undefined
+            },
+            checkingBook: false,
+            bookQuality: 0
+        }
+    }
+
+    //TODO: this scope use as back-end to catch and post to local api at post 3001
+    //TODO: get ID of the station (maybe won't use after update Schema)
+
+
+    async searchGetData(fromStationName, toStationName, depart_time) {
+        const fetchAddr = `${HOSTAPISEARCHING}`;
+        const body = {};
+        let result = [];
+
+        if (fromStationName) body.from_name = fromStationName;
+        if (toStationName) body.to_name = toStationName;
+        if (depart_time) body.depart_time = depart_time;
+        console.log(body);
+        await fetch(fetchAddr, {
+            method: 'post',
+            body: JSON.stringify(body),
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(res => res.json())
+            .then(json => {
+                result = json;
+            })
+
+        return result; //*! Return a list of trip (single Object if only 1 found!)
+    }
+
+
+    async searchToDirect(fromStationName, toStationName, depart_time, re_depart_time) {
+        console.log("Run search");
+        const go = await this.searchGetData(fromStationName, toStationName, depart_time);
+
+        let back = [];
+        if (re_depart_time) back = await this.searchGetData(toStationName, fromStationName, re_depart_time);
+
+        //TODO: This scope get the list of station include id and name to map to current result (maybe won't use after update Schema!)
+        const result = await go.concat(back);
+
+        return result;
+    }
+
+    //TODO: get a hash map of station with the index is station._id (exp: stationMap[station._id] = station.name!)
+    
+
+    //TODO: book a ticket, create new ticket and update chosen trips (will be updated more)!
+    async bookingGetData(userId, tripId, quality) {
+        const fetchAddr = `${HOSTAPIBOOKING}${userId}-${tripId}-${quality}`;
+        if(quality == 0){
+            alert("Quality should not be 0!");
+            return false;
+        }else{
+            fetch(fetchAddr)
+                .then(res => {
+                    // eslint-disable-next-line
+                    if (res.status == 503) {
+                        console.log({ status: 503 });
+                        return false
+                    }
+                        // eslint-disable-next-line
+                    if (res.status == 400) {
+                        console.log({ status: 400 });
+                        return false
+                    } else return res.json();
+                })
+                .then(json => console.log(json));
+        }
+        return true;
+    }
+        //TODO: update function to update seat_remain of trip
+
+    //TODO: main book function (pass as props for child components!)
+    async book(data, e) {
+        await this.setState({
+            bookingData: data
+        })
+
+        await this.setState({
+            checkingBook: true
+        })
+
+        //!need to update latter
+    }
+
+    confirmBooking(data, e) {
+        let isOk = this.bookingGetData(this.state.userId, this.state.bookingData._id, this.state.bookQuality);
+        if(!isOk) {
+            alert("Something wrong when booking ticket! please contact us to know your problem.")
+            return false;
+        }
+        this.handleCloseModal();
+        alert('Your Ticket Was Booked!');
+    }
+
+    //TODO: handle searchInput and pass to child components
+    getSearchInput() {
+        return this.state.searchInput;
+    }
+
+    setSearchInput(searchInput) {
+        this.setState((state) => ({
+            searchInput: searchInput
+        }))
+    }
+    //TODO://
+
+    //TODO: update latter (maybe deleted!)
+
+    //TODO: main search function (pass to child components)
+    async search() {
+        console.log(`Search For: ${this.state.searchInput.from}`);
+        console.log(this.state.searchInput.to);
+        console.log(this.state.searchInput.startDay);
+        console.log(this.state.searchInput.backDay);
+
+        const searchOutput = await this.searchToDirect(this.state.searchInput.from,
+            this.state.searchInput.to,
+            this.state.searchInput.startDay,
+            this.state.searchInput.backDay);
+
+        await this.setState({
+            SearchData: searchOutput,
+            didSearch: true
+        })
+
+        await console.log(this.state.SearchData);
+        window.location.href = "#Calendar";
+    }
+
+    handleCloseModal() {
+        this.setState({
+            checkingBook: false
+        })
+    }
+
+
+    handleChangeNumberOfTicket(e) {
+        if (e.target.value < 0) e.target.value = 0;
+        if (e.target.value > this.state.bookingData.seat_remain) e.target.value = this.state.bookingData.seat_remain;
+        this.setState({ bookQuality: e.target.value })
+    }
+
+
+    render() {
+        return (
+            <BrowserRouter>
+                <div className="container-fluid px-0" id="Content">
+                    <NavBar />
+                    <Header getSearchInput={this.getSearchInput}
+                        setSearchInput={this.setSearchInput}
+                        search={this.search}
+                    />
+                    <Promotion promotionData={Data.promotData}
+                        setSearchInput={this.setSearchInput}
+                        getSearchInput={this.getSearchInput}
+                        search={this.search}
+                    />
+                    <Search setSearchInput={this.setSearchInput}
+                        getSearchInput={this.getSearchInput}
+                        search={this.search}
+                    />
+                    <Calendar setSearchInput={this.setSearchInput}
+                        getSearchInput={this.getSearchInput}
+                        search={this.search}
+                        book={this.book}
+                        data={this.state.SearchData}
+                        didSearch={this.state.didSearch}
+                    />
+                    <Modal show={this.state.checkingBook} onHide={this.handleCloseModal}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Your Ticket</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <BookingInfo data={this.state.bookingData} />
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Number of ticket(s)</span>
+                                </div>
+                                <input type="number"
+                                    class="form-control"
+                                    placeholder="1"
+                                    aria-label="number of ticket"
+                                    aria-describedby="basic-addon1"
+                                    onChange={this.handleChangeNumberOfTicket} />
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={this.handleCloseModal}>
+                                Cancel
+                        </Button>
+                            <Button variant="primary" onClick={this.confirmBooking}>
+                                Confirm
+                        </Button>
+                        </Modal.Footer>
+                    </Modal>
+                    <Footer />
+                </div>
+            </BrowserRouter>
+        )
+    }
 }
 
 export default App;

@@ -15,6 +15,7 @@ export default class Search extends Component{
         this.handleChangeTo = this.handleChangeTo.bind(this);
         this.handleChangeFrom = this.handleChangeFrom.bind(this);
         this.checkDayValid = this.checkDayValid.bind(this);
+        this.resetDay = this.resetDay.bind(this);
         this.state = {
             from: this.props.getSearchInput().from,
             to: this.props.getSearchInput().to,
@@ -93,43 +94,56 @@ export default class Search extends Component{
         })
     }
 
+    resetDay(){
+        this.props.setSearchInput({
+            from: this.props.getSearchInput().from,
+            to: this.props.getSearchInput().to,
+            startDay: undefined,
+            backDay: undefined
+        })
+    }
+
     render(){
         const from = this.state.from;
         const to = this.state.to;
         return(
             <div id="Search">
                 <br />
-                <div className="container py-2 text-light">
+                <div className="container py-2 text-light shadow">
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                        <label htmlFor="inputFrom">From</label>
-                        <input type="text" className="form-control" id="From" placeholder="Ho Chi Minh" onChange={this.handleChangeFrom} value={from}/>
+                        <label htmlFor="inputFrom">Type From</label>
+                        <input type="text" className="form-control shadow border-primary" id="From" placeholder="Hồ Chí Minh" onChange={this.handleChangeFrom} value={from}/>
                         </div>
                         <div className="form-group col-md-6">
-                        <label htmlFor="inputTo">To</label>
-                        <input type="text" className="form-control" id="inputTo" placeholder="Da Lat" onChange={this.handleChangeTo} value={to}/>
+                        <label htmlFor="inputTo">Type To</label>
+                        <input type="text" className="form-control shadow border-primary" id="inputTo" placeholder="Hà Nội" onChange={this.handleChangeTo} value={to}/>
                         </div>
                     </div>
                     <div className="form-row">
-                        <div className="form-group col-md-6">
+                        <div className="input-group col-md-6">
                             <label className="col-3" htmlFor="startDay">Start Day</label>
-                            <DatePicker className="col-9"
+                            <DatePicker className="col-9 shadow border-primary"
                                 selected={this.state.selectedStartDay}
                                 onChange={this.handleStartDayChange}
                             />
                         </div>
                         <div className="form-group col-md-6">
                             <label className="col-3" htmlFor="backDay">Back Day</label>
-                            <DatePicker className="col-9"
+                            <DatePicker className="col-9 shadow border-primary"
                                 selected={this.state.selectedBackDay}
                                 onChange={this.handleBackDayChange}
                             />
                         </div>
                     </div>
-                    
-                    <button className="btn btn-outline-dark col-md-6 col-12 offset-md-3" 
+                    <div className="btn-group col-md-6 offset-md-6" role="group" aria-label="Basic example">
+                    <button className="btn btn-primary col-4 mt-1 border-none shadow" 
+                        onClick={this.resetDay}
+                        href="#Search">Reset Day</button>
+                    <button className="btn btn-primary col-8 mt-1 border-none shadow" 
                         onClick={this.props.search}
                         href="#Calendar">Let's Find</button>
+                    </div>
                 </div>
                 <br />
             </div>

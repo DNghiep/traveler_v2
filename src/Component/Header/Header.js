@@ -10,6 +10,7 @@ export default class Header extends Component {
     static defaultProps = {
         numberOfMonths: 2,
     };
+
     constructor(props) {
         super(props);
         this.handleDayClick = this.handleDayClick.bind(this);
@@ -21,6 +22,7 @@ export default class Header extends Component {
         }
     }
 
+    //TODO: this scope use for daypicker 
     getInitialState() {
         return {
             from: undefined,
@@ -28,20 +30,15 @@ export default class Header extends Component {
         };
     }
 
-    checkDayValid(date){
-        let thisDay = new Date();
-        thisDay.setHours(0, 0, 0, 0);
-        if(!date) return true;
-        else if(date < thisDay){
-            alert("U can't find the day in the fast, idiot!!!!!!!");
-            return false;
-        }else return true;
-    }
-
     handleDayClick(day) {
         const range = DateUtils.addDayToRange(day, this.state);
-        if(!this.checkDayValid(range.from)) range.from = this.state.from;
-        if(!this.checkDayValid(range.to)) range.to = this.state.to;
+        if (!this.checkDayValid(range.from)) range.from = this.state.from;
+        if (!this.checkDayValid(range.to)) range.to = this.state.to;
+        if(range.from > range.to){
+            let day = range.from;
+            range.from = range.to;
+            range.to = day;
+        }
         this.setState(range);
         this.props.setSearchInput({
             from: this.props.getSearchInput().from,
@@ -50,18 +47,33 @@ export default class Header extends Component {
             backDay: range.to
         })
     }
+
     handleResetClick() {
         this.setState(this.getInitialState());
         this.props.setSearchInput({
             from: this.props.getSearchInput().from,
             to: this.props.getSearchInput().to,
-            startDay: new Date(),
+            startDay: undefined,
             backDay: undefined
         })
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot){
-        if(this.props !== prevProps)
+    //TODO: check valid if the day is in the pass
+    checkDayValid(date) {
+        let thisDay = new Date();
+        thisDay.setHours(0, 0, 0, 0);
+
+        if (!date) return true;
+        else if (date < thisDay) {
+            alert("U can't find the day in the fast, idiot!!!!!!!");
+            return false;
+        }
+        else return true;
+    }
+
+    //TODO: Force component update itself
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props !== prevProps)
             this.setState({
                 from: this.props.getSearchInput().startDay,
                 to: this.props.getSearchInput().backDay

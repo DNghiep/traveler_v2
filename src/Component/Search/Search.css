@@ -1,7 +1,25 @@
 #Search .container {
-  background-image: url(./2x1.png);
-  background-size: cover;
-  border-radius: 10px;
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#Search .btn {
+  border-color: white;
+  border-radius: 20px;
+  margin-left: 10px;
+  -webkit-box-shadow: 5px inset black;
+          box-shadow: 5px inset black;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#Search .btn:hover {
+  border-color: #007BFF;
+  color: black;
+  background-color: white;
+  -webkit-box-shadow: 10px white;
+          box-shadow: 10px white;
+  font-weight: bold;
 }
 
 #Search * {
@@ -9,7 +27,11 @@
 }
 
 #Search .react-datepicker__input-container input {
-  border-radius: 5px !important;
+  border-radius: 15px !important;
   width: 100% !important;
+}
+
+.DayPicker-Day:hover {
+  color: #007BFF !important;
 }
 /*# sourceMappingURL=Search.css.map */

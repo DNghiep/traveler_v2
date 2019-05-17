@@ -1,31 +1,31 @@
 const Data = {
     "promotData": [
         {
-            "name": 'Nha Trang',
+            "name": 'Quảng Nam',
             "imgUrl": './DaLat.png'
         },
         {
-            "name": 'Da Lat',
+            "name": 'Hà Nội',
             "imgUrl": './DaLat.png'
         },
         {
-            "name": 'Da Nang',
+            "name": 'Hồ Chí Minh',
             "imgUrl": './VungTau.png'
         },
         {
-            "name": 'Hong Kong',
+            "name": 'Lâm Đồng',
             "imgUrl": './VungTau.png'
         },
         {
-            "name": 'Vung Tau',
+            "name": 'Đà Nẵng',
             "imgUrl": './DaLat.png'
         },
         {
-            "name": 'Bac Lieu',
+            "name": 'Bắc Giang',
             "imgUrl": './VungTau.png'
         },
         {
-            "name": 'Nha Trang',
+            "name": 'Bình Thuận',
             "imgUrl": './DaLat.png'
         },
     ]

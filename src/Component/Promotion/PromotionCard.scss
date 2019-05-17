@@ -1,21 +1,35 @@
 .promotioncard{
-    .card-title{
+    background-color: rgba($color: white, $alpha: 0.0);
+    border: none;
+    .btn{
         display: none;
         cursor: pointer;
-        transform: scale(1.05);
-        font-weight: bold;
+        background-color: rgba($color: black, $alpha: 0.0);
+        border:none;
+        color: white;
+    }
+
+    .card-img{
+        border-radius: 10px;
+    }
+    .card-img-overlay{
+        display: none;
+        background-color: rgba($color: black, $alpha: 0.3);
+        border-radius: 10px;
     }
         &:hover{
-            .card-title{
+            .btn{
+                display: block;
+            }
+            .card-img-overlay{
                 display: block;
                 animation: showup 0.5s 1;
                 @keyframes showup {
                     0%{
-                        transform: scale(1.0);
+                        background-color: rgba($color: black, $alpha: 0.0);
                     }
                     100%{
-                        transform: scale(1.05);
-                        font-weight: bold;
+                        background-color: rgba($color: black, $alpha: 0.3);
                     }
                 }
             }

@@ -38,3 +38,12 @@
 * {
     scroll-behavior: smooth;
 }
+
+#Content{
+    background-image: url(2x1.jpg);
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
