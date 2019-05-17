@@ -33,7 +33,7 @@ class SignUpForm extends Component {
     console.log(this.state);
   }
   onSignUp(email, password, username) {
-    let url = "http://localhost:3000/api/signup";
+    let url = "http://localhost:3001/api/signup";
     axios
       .post(url, { email: email, password: password, user_name: username })
       .then(response => {

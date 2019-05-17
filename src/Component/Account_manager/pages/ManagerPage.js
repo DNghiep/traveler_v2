@@ -40,7 +40,7 @@ class ManagerPage extends Component {
 
   getData(){
     let u_id = getCookie("u_id");
-    let url= "http://localhost:3000/api/account?u_id=" + u_id;
+    let url= "http://localhost:3001/api/account?u_id=" + u_id;
     axios
       .get(url)
       .then(res => {
@@ -58,7 +58,7 @@ class ManagerPage extends Component {
 }
 onUpdate(email,password, username, phone, address) {
   let u_id = getCookie("u_id");
-  let url = "http://localhost:3000/api/account?u_id=" + u_id;
+  let url = "http://localhost:3001/api/account?u_id=" + u_id;
   axios
     .post(url, {email: email, password: password, user_name: username, address: address, phone: phone})
     .then(response => {
