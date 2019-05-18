@@ -102,21 +102,39 @@ class App extends Component {
         if (re_depart_time) back = await this.searchGetData(toStationName, fromStationName, re_depart_time);
 
         //TODO: This scope get the list of station include id and name to map to current result (maybe won't use after update Schema!)
-        const result = await go.concat(back);
+        // const result = await go.concat(back);
+        let result = [];
+        if (back.length > 0) {
+            let minLength = Math.min(back.length, go.length);
+            let i = 0;
+            for (i; i < minLength; i++) {
+                result.push(go[i]);
+                result.push(back[i]);
+            }
+            if (back.length > go.length) {
+                for (i; i < back.length; i++) {
+                    result.push(back[i]);
+                }
+            } else {
+                for (i; i < go.length; i++) {
+                    result.push(go[i]);
+                }
+            }
+        } else result = go;
 
         return result;
     }
 
     //TODO: get a hash map of station with the index is station._id (exp: stationMap[station._id] = station.name!)
-    
+
 
     //TODO: book a ticket, create new ticket and update chosen trips (will be updated more)!
     async bookingGetData(userId, tripId, quality) {
         const fetchAddr = `${HOSTAPIBOOKING}${userId}-${tripId}-${quality}`;
-        if(quality == 0){
+        if (quality == 0) {
             alert("Quality should not be 0!");
             return false;
-        }else{
+        } else {
             fetch(fetchAddr)
                 .then(res => {
                     // eslint-disable-next-line
@@ -124,17 +142,17 @@ class App extends Component {
                         console.log({ status: 503 });
                         return false
                     }
-                        // eslint-disable-next-line
+                    // eslint-disable-next-line
                     if (res.status == 400) {
                         console.log({ status: 400 });
                         return false
                     } else return res.json();
                 })
                 .then(json => console.log(json));
+                return true;
         }
-        return true;
     }
-        //TODO: update function to update seat_remain of trip
+    //TODO: update function to update seat_remain of trip
 
     //TODO: main book function (pass as props for child components!)
     async book(data, e) {
@@ -151,12 +169,19 @@ class App extends Component {
 
     confirmBooking(data, e) {
         let isOk = this.bookingGetData(this.state.userId, this.state.bookingData._id, this.state.bookQuality);
-        if(!isOk) {
+        if (isOk == false) {
             alert("Something wrong when booking ticket! please contact us to know your problem.")
             return false;
         }
-        this.handleCloseModal();
-        alert('Your Ticket Was Booked!');
+        else {
+            this.state.SearchData.forEach(element => {
+                if(element._id == this.state.bookingData._id){
+                    element.seat_remain -= this.state.bookQuality;
+                }
+            })
+            alert('Your Ticket Was Booked!');
+            this.handleCloseModal();
+        }
     }
 
     //TODO: handle searchInput and pass to child components
@@ -189,8 +214,7 @@ class App extends Component {
             SearchData: searchOutput,
             didSearch: true
         })
-
-        await console.log(this.state.SearchData);
+        // await console.log(this.state.SearchData);
         window.location.href = "#Calendar";
     }
 
@@ -202,7 +226,7 @@ class App extends Component {
 
 
     handleChangeNumberOfTicket(e) {
-        if (e.target.value < 0) e.target.value = 0;
+        if (e.target.value < 1) e.target.value = 1;
         if (e.target.value > this.state.bookingData.seat_remain) e.target.value = this.state.bookingData.seat_remain;
         this.setState({ bookQuality: e.target.value })
     }

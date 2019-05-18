@@ -5,7 +5,7 @@ import './CarlendarCard.css';
 export default class CalendarCard extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props.data);
+        // console.log(this.props.data);
         this.state = {
             fromName: this.props.data.from_name,
             toName: this.props.data.to_name,

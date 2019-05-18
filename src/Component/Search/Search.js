@@ -79,7 +79,7 @@ export default class Search extends Component{
     }
     handleBackDayChange(day) {
         let startDay = this.props.getSearchInput().startDay;
-        if(day < startDay){
+        if(day < startDay || !startDay){
             startDay = day;
             day = this.props.getSearchInput().startDay;
         }
@@ -113,11 +113,37 @@ export default class Search extends Component{
                     <div className="form-row">
                         <div className="form-group col-md-6">
                         <label htmlFor="inputFrom">Type From</label>
-                        <input type="text" className="form-control shadow border-primary" id="From" placeholder="Hồ Chí Minh" onChange={this.handleChangeFrom} value={from}/>
+                        {/* <input type="text" className="form-control shadow border-primary" id="From" placeholder="Hồ Chí Minh" onChange={this.handleChangeFrom} value={from}/> */}
+                        <select class="custom-select form-control shadow border-primary" id="From" onChange={this.handleChangeFrom} value={from}>
+                            <option selected value={undefined}>Choose...</option>
+                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Bình Thuận">Bình Thuận</option>
+                            <option value="Yên Bái">Yên Bái</option>
+                            <option value="Bắc Giang">Bắc Giang</option>
+                            <option value="Lâm Đồng">Lâm Đồng</option>
+                            <option value="Quảng Ninh">Quãng Ninh</option>
+                            <option value="Bến Tre">Bến Tre</option>
+                            <option value="Quảng Nam">Quảng Nam</option>
+                        </select>
                         </div>
                         <div className="form-group col-md-6">
                         <label htmlFor="inputTo">Type To</label>
-                        <input type="text" className="form-control shadow border-primary" id="inputTo" placeholder="Hà Nội" onChange={this.handleChangeTo} value={to}/>
+                        {/* <input type="text" className="form-control shadow border-primary" id="inputTo" placeholder="Hà Nội" onChange={this.handleChangeTo} value={to}/> */}
+                        <select class="custom-select form-control shadow border-primary" id="inputTo" onChange={this.handleChangeTo} value={to}>
+                            <option selected value={undefined}>Choose...</option>
+                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="Hà Nội">Hà Nội</option>
+                            <option value="Đà Nẵng">Đà Nẵng</option>
+                            <option value="Bình Thuận">Bình Thuận</option>
+                            <option value="Yên Bái">Yên Bái</option>
+                            <option value="Bắc Giang">Bắc Giang</option>
+                            <option value="Lâm Đồng">Lâm Đồng</option>
+                            <option value="Quảng Ninh">Quãng Ninh</option>
+                            <option value="Bến Tre">Bến Tre</option>
+                            <option value="Quảng Nam">Quảng Nam</option>
+                        </select>
                         </div>
                     </div>
                     <div className="form-row">

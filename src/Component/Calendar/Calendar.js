@@ -42,7 +42,7 @@ export default class Calendar extends Component {
                 curDay: this.props.getSearchInput().startDay,
                 data: this.props.data
             })
-            await console.log(this.state.data);
+            // await console.log(this.state.data);
         }
     }
 
