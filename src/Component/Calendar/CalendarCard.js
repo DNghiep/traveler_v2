@@ -36,6 +36,7 @@ export default class CalendarCard extends Component {
     }
     
     render() {
+        
         return (
             <div className="col-lg-3 col-md-4 col-sm-6 px-1 py-2 calendarcard">
                 <div className="card">

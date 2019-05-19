@@ -129,7 +129,7 @@ class App extends Component {
 
 
     //TODO: book a ticket, create new ticket and update chosen trips (will be updated more)!
-    async bookingGetData(userId, tripId, quality) {
+    bookingGetData(userId, tripId, quality) {
         const fetchAddr = `${HOSTAPIBOOKING}${userId}-${tripId}-${quality}`;
         if (quality == 0) {
             alert("Quality should not be 0!");
@@ -149,7 +149,7 @@ class App extends Component {
                     } else return res.json();
                 })
                 .then(json => console.log(json));
-                return true;
+            return true;
         }
     }
     //TODO: update function to update seat_remain of trip
@@ -169,7 +169,7 @@ class App extends Component {
 
     confirmBooking(data, e) {
         let isOk = this.bookingGetData(this.state.userId, this.state.bookingData._id, this.state.bookQuality);
-        if (isOk == false) {
+        if (isOk === false) {
             alert("Something wrong when booking ticket! please contact us to know your problem.")
             return false;
         }

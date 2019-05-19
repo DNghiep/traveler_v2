@@ -8,7 +8,9 @@ export default class BookingInfo extends Component {
         // console.log(this.props.data);
         this.state = {
             fromName: this.props.data.from_name,
+            fromLocation: this.props.data.from_location,
             toName: this.props.data.to_name,
+            toLocation: this.props.data.to_location,
             date: new Date(this.props.data.depart_time).getDate(),
             month: new Date(this.props.data.depart_time).getMonth() + 1,
             hours: new Date(this.props.data.depart_time).getHours(),
@@ -24,7 +26,9 @@ export default class BookingInfo extends Component {
         if (this.props != prevProps) {
             this.setState({
                 fromName: this.props.data.from_name,
+                fromLocation: this.props.data.from_location,
                 toName: this.props.data.to_name,
+                toLocation: this.props.data.to_location,
                 date: new Date(this.props.data.depart_time).getDate(),
                 month: new Date(this.props.data.depart_time).getMonth() + 1,
                 hours: new Date(this.props.data.depart_time).getHours(),
@@ -42,6 +46,7 @@ export default class BookingInfo extends Component {
                 <div className="card">
                     <div className="card-body">
                         <h5 className="card-title">{`${this.state.fromName} - ${this.state.toName}`}</h5>
+                        <p className="card-text">{`Stations: ${this.state.fromLocation} - ${this.state.toLocation}`}</p>
                         <p className="card-text">{`Day: ${this.state.date}/${this.state.month}`}</p>
                         <p className="card-text">{`Time: ${this.state.hours}h - ${this.state.hoursback}h`}</p>
                         <p className="card-text">{`Remain seat: ${this.state.seat_remain}`}</p>

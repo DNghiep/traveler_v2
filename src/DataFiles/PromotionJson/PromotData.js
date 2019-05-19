@@ -2,31 +2,31 @@ const Data = {
     "promotData": [
         {
             "name": 'Quảng Nam',
-            "imgUrl": './DaLat.png'
+            "imgUrl": './QUANGNAM.png'
         },
         {
             "name": 'Hà Nội',
-            "imgUrl": './DaLat.png'
+            "imgUrl": './HANOI.png'
         },
         {
             "name": 'Hồ Chí Minh',
-            "imgUrl": './VungTau.png'
+            "imgUrl": './HOCHIMINH.png'
         },
         {
             "name": 'Lâm Đồng',
-            "imgUrl": './VungTau.png'
+            "imgUrl": './LAMDONG.png'
         },
         {
             "name": 'Đà Nẵng',
-            "imgUrl": './DaLat.png'
+            "imgUrl": './DANANG.png'
         },
         {
             "name": 'Bắc Giang',
-            "imgUrl": './VungTau.png'
+            "imgUrl": './BACGIANG.png'
         },
         {
             "name": 'Bình Thuận',
-            "imgUrl": './DaLat.png'
+            "imgUrl": './BINHTHUAN.png'
         },
     ]
 };
