@@ -4,8 +4,8 @@ import axios from "axios";
 import { getCookie } from "../../Cookies/getCookie";
 import { setCookie } from "../../Cookies/setCookie";
 class Signinform extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
@@ -14,6 +14,7 @@ class Signinform extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onSignIn = this.onSignIn.bind(this);
     }
 
     handleChange(e) {
@@ -32,7 +33,9 @@ class Signinform extends Component {
         console.log('The form was submitted with the following data:');
         console.log(this.state);
     }
-    onSignIn(email, password) {
+    onSignIn() {
+      let email = this.state.email;
+      let password = this.state.password;
       let url = "http://localhost:3001/api/login";
       axios
         .post(url, { email: email, password: password})
@@ -47,6 +50,8 @@ class Signinform extends Component {
           }
           console.log(response)
         });
+        this.props.updateCookie();
+        this.props.updateMainCookie();
     }
     render() {
         return (
@@ -64,12 +69,7 @@ class Signinform extends Component {
 
               <div className="formfield">
                   <button className="formfield-button mr-20"
-                  onClick={() => {
-                    this.onSignIn(
-                      this.state.email,
-                      this.state.password
-                    );
-                  }}
+                  onClick={this.onSignIn}
                   >Sign in</button>
               </div>
             </form>

@@ -10,11 +10,14 @@ import Account from "./Component/Account_manager/Account_manager"
 import { getCookie } from "./Component/Cookies/getCookie";
 import { setCookie } from "./Component/Cookies/setCookie";
 
+/*
 if (getCookie("islogin") == 0) {
   ReactDOM.render(<Login />, document.getElementById('root'));
 } else {
   ReactDOM.render(<Account />, document.getElementById('root'));
 }
+*/
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

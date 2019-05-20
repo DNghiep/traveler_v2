@@ -1,6 +1,6 @@
 /* eslint-disable react/no-typos */
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import './App.css';
@@ -16,6 +16,9 @@ import BookingInfo from './Component/BookingInfo/BookingInfo';
 
 //Import promotionData
 import Data from './DataFiles/PromotionJson/PromotData';
+import AccountContainer from './Account';
+
+import { getCookie } from "./Component/Cookies/getCookie";
 
 //Import fetch
 const fetch = require('node-fetch');
@@ -42,8 +45,10 @@ class App extends Component {
         this.confirmBooking = this.confirmBooking.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleChangeNumberOfTicket = this.handleChangeNumberOfTicket.bind(this);
+        this.updateCookie = this.updateCookie.bind(this);
         this.state = {
-            userId: "5cda63ab39995314a3fbdd6d",
+            isLogin: getCookie("islogin"),
+            userId: getCookie("u_id"),
             searchInput: {
                 from: undefined,
                 to: undefined,
@@ -65,6 +70,14 @@ class App extends Component {
             checkingBook: false,
             bookQuality: 0
         }
+    }
+
+    updateCookie() {
+        this.setState({
+            isLogin: getCookie("islogin"),
+            userId: getCookie("u_id")
+        })
+        console.log(this.state.userId);
     }
 
     //TODO: this scope use as back-end to catch and post to local api at post 3001
@@ -168,6 +181,10 @@ class App extends Component {
     }
 
     confirmBooking(data, e) {
+        if (this.state.isLogin == 0 || !this.state.isLogin) {
+            alert("You need to sign in.");
+            return false;
+        }
         let isOk = this.bookingGetData(this.state.userId, this.state.bookingData._id, this.state.bookQuality);
         if (isOk === false) {
             alert("Something wrong when booking ticket! please contact us to know your problem.")
@@ -235,8 +252,9 @@ class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <div className="container-fluid px-0" id="Content">
-                    <NavBar />
+                <Route exact path="/" render={ props =>
+                    <div className="container-fluid px-0" id="Content">
+                    <NavBar isLogin={this.state.isLogin}/>
                     <Header getSearchInput={this.getSearchInput}
                         setSearchInput={this.setSearchInput}
                         search={this.search}
@@ -286,6 +304,8 @@ class App extends Component {
                     </Modal>
                     <Footer />
                 </div>
+                }/>
+                <Route path="/login" component={() => <AccountContainer updateCookie={this.updateCookie}/>}/>
             </BrowserRouter>
         )
     }
