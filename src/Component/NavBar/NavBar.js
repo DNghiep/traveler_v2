@@ -23,7 +23,7 @@ export default class NavBar extends Component {
                                 <a className="nav-link" href="#Calendar">Calendar</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#Header">Sign In</a>
+                                <a className="nav-link" href="#SignIn">Sign In</a>
                             </li>
                         </ul>
                     </div>

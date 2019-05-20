@@ -1,0 +1,30 @@
+.booking-result-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+}
+.booking-result-tabs-container  {
+  padding: 25px 0;
+  padding-top: 25px;
+  padding-right: 0px;
+  padding-bottom: 25px;
+  padding-left: 0px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.tab-link.active a :hover{
+  border-bottom-color: #db6f1c;
+  color: #db6f1c
+}
+.booking-result-tabs-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.test-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
