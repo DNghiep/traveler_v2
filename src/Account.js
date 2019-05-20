@@ -18,12 +18,12 @@ class AccountContainer extends Component {
     }
 
     updateCookie(){
+        this.props.updateMainCookie();
         this.setState({
             isLogin: getCookie("islogin")
         })
     }
     render() {
-        console.log(this.state.isLogin)
         return (
             <div className="account-container">
                 <NavBar isLogin={this.state.isLogin}/>

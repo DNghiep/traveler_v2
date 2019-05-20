@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from "axios";
 import { getCookie } from "../../Cookies/getCookie";
 import { setCookie } from "../../Cookies/setCookie";
@@ -7,14 +7,15 @@ class Signinform extends Component {
     constructor(props) {
         super(props);
 
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.onSignIn = this.onSignIn.bind(this);
+
         this.state = {
             email: '',
             password: ''
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.onSignIn = this.onSignIn.bind(this);
     }
 
     handleChange(e) {
@@ -33,11 +34,11 @@ class Signinform extends Component {
         console.log('The form was submitted with the following data:');
         console.log(this.state);
     }
-    onSignIn() {
+    async onSignIn() {
       let email = this.state.email;
       let password = this.state.password;
       let url = "http://localhost:3001/api/login";
-      axios
+      await axios
         .post(url, { email: email, password: password})
         .then(response => {
           alert(response.data);
@@ -50,8 +51,8 @@ class Signinform extends Component {
           }
           console.log(response)
         });
-        this.props.updateCookie();
-        this.props.updateMainCookie();
+        await this.props.updateMainCookie();
+        await this.props.updateCookie();
     }
     render() {
         return (

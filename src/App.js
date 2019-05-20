@@ -72,12 +72,11 @@ class App extends Component {
         }
     }
 
-    updateCookie() {
-        this.setState({
+    async updateCookie() {
+        await this.setState({
             isLogin: getCookie("islogin"),
             userId: getCookie("u_id")
         })
-        console.log(this.state.userId);
     }
 
     //TODO: this scope use as back-end to catch and post to local api at post 3001
@@ -169,6 +168,7 @@ class App extends Component {
 
     //TODO: main book function (pass as props for child components!)
     async book(data, e) {
+        this.updateCookie();
         await this.setState({
             bookingData: data
         })

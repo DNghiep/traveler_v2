@@ -27,7 +27,7 @@ export default class Footer extends Component {
                                     <a className="nav-link" href="#Search">Calender</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#Calendar">Account</a>
+                                    <a className="nav-link" href="/login">Account</a>
                                 </li>
                             </ul>
                         </div>

@@ -102,7 +102,7 @@ export default class Header extends Component {
                                 </button>
                             )
                         }
-                        {from && (<button className="btn btn-info ml-3" href="#Calendar" onClick={this.props.search}>Go Find</button>)}
+                        {from && (<button className="btn btn-info ml-3" href="#Search" onClick={()=> window.location.href="#Search"}>Go Find</button>)}
                     </p>
                     <DayPicker
                         className="Selectable"
