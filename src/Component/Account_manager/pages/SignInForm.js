@@ -41,10 +41,11 @@ class Signinform extends Component {
       await axios
         .post(url, { email: email, password: password})
         .then(response => {
-          alert(response.data);
+          // alert(response.data);
           setCookie("u_id",response.data,365);
           if (getCookie("u_id") == "Login Fail") {
             setCookie("islogin", 0 , 365)
+            alert("Invalid login credential.");
           } else {
             setCookie("islogin", 1 , 365)
             window.location.reload();
