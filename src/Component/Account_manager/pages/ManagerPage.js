@@ -125,7 +125,8 @@ class ManagerPage extends Component {
               Phone Number
             </label>
             <input
-              type="number"
+              type="tel"
+              pattern="[0-9]*"
               id="phone"
               className="formfield-input"
               placeholder={this.state.phone}
