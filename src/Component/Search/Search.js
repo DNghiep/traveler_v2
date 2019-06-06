@@ -95,6 +95,10 @@ export default class Search extends Component{
     }
 
     resetDay(){
+        this.setState({
+            selectedStartDay: undefined,
+            selectedBackDay: undefined
+        })
         this.props.setSearchInput({
             from: this.props.getSearchInput().from,
             to: this.props.getSearchInput().to,

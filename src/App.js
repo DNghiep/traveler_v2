@@ -77,6 +77,7 @@ class App extends Component {
             isLogin: getCookie("islogin"),
             userId: getCookie("u_id")
         })
+        console.log(this.state.userId);
     }
 
     //TODO: this scope use as back-end to catch and post to local api at post 3001
@@ -185,8 +186,12 @@ class App extends Component {
             alert("You need to sign in.");
             return false;
         }
+        else console.log(this.state.userId);
         let isOk = this.bookingGetData(this.state.userId, this.state.bookingData._id, this.state.bookQuality);
         if (isOk === false) {
+            this.setState({
+                bookQuality: 0
+            })
             alert("Something wrong when booking ticket! please contact us to know your problem.")
             return false;
         }
@@ -195,6 +200,9 @@ class App extends Component {
                 if(element._id == this.state.bookingData._id){
                     element.seat_remain -= this.state.bookQuality;
                 }
+            })
+            this.setState({
+                bookQuality: 0
             })
             alert('Your Ticket Was Booked!');
             this.handleCloseModal();
